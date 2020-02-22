@@ -66,13 +66,13 @@ class Login extends Component {
             style={loginStyle.textInputStyle}
             placeholder="********"
             secureTextEntry={true}
-            returnKeyType
+            returnKeyType={'send'}
           />
           <View style={loginStyle.loginMethods}>
             <TouchableOpacity style={loginStyle.facebook}>
               <Text style={loginStyle.textFacebook}>{facebook}</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={loginStyle.signInButton}>
+            <TouchableOpacity style={loginStyle.signInButton} onPress={_=>this.props.navigation.navigate('forgotLogin')}>
               <LinearGradient
                 colors={[
                   Colors.linearButton1,
