@@ -72,7 +72,9 @@ class Login extends Component {
             <TouchableOpacity style={loginStyle.facebook}>
               <Text style={loginStyle.textFacebook}>{facebook}</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={loginStyle.signInButton} onPress={_=>this.props.navigation.navigate('forgotLogin')}>
+            <TouchableOpacity
+              style={loginStyle.signInButton}
+              onPress={_ => this.props.navigation.navigate('home')}>
               <LinearGradient
                 colors={[
                   Colors.linearButton1,

@@ -5,6 +5,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {Login} from '../login';
 import {ForgotLogin} from '../forgotLogin';
+import {HomeTabs} from '../homeTabs';
 
 const Stack = createStackNavigator();
 
@@ -31,7 +32,7 @@ class StackContainer extends Component {
               },
             }}
           />
-          <Stack.Screen name={'home'} options={{header:null}} component={}/>
+          <Stack.Screen name={'home'} component={HomeTabs} />
         </Stack.Navigator>
       </NavigationContainer>
     );
