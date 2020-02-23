@@ -4,6 +4,7 @@ import 'react-native-gesture-handler';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {Login} from '../login';
+import {ForgotLogin} from '../forgotLogin';
 
 const Stack = createStackNavigator();
 
@@ -19,8 +20,18 @@ class StackContainer extends Component {
           />
           <Stack.Screen
             name={'forgotLogin'}
-            component={Login}
+            component={ForgotLogin}
+            options={{
+              headerStyle: {
+                elevation: 0,
+                backgroundColor: 'transparent',
+              },
+              headerTitleStyle: {
+                left: '50%',
+              },
+            }}
           />
+          <Stack.Screen name={'home'} options={{header:null}} component={}/>
         </Stack.Navigator>
       </NavigationContainer>
     );
