@@ -32,7 +32,13 @@ class StackContainer extends Component {
               },
             }}
           />
-          <Stack.Screen name={'home'} component={HomeTabs} />
+          <Stack.Screen
+            name={'home'}
+            component={HomeTabs}
+            options={{
+              headerShown: false,
+            }}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     );

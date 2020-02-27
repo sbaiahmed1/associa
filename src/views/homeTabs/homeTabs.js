@@ -9,7 +9,7 @@ class HomeTabs extends Component {
       <Tabs.Navigator>
         <Tabs.Screen name="Home" component={Login} />
         <Tabs.Screen name="Settings" component={Login} />
-        <Tabs.Screen name="view" component={Login} />
+        <Tabs.Screen name="view" options={{}} component={Login} />
       </Tabs.Navigator>
     );
   }
