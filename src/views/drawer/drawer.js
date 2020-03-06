@@ -12,8 +12,8 @@ export default class Drawer extends Component {
   render() {
     return (
       <DrawerNav.Navigator initialRouteName="homeDrawer">
-        <DrawerNav.Screen name="homeDrawer" component={HomeTabs} />
-        <DrawerNav.Screen name="Notifications" component={Profile} />
+        <DrawerNav.Screen name="settings" component={HomeTabs} />
+        <DrawerNav.Screen name="payments" component={Profile} />
       </DrawerNav.Navigator>
     );
   }
