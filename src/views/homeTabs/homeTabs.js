@@ -7,6 +7,9 @@ import {Colors, GlobalSheet} from '../../config';
 import {FloatingButton} from '../../components/floatingButton';
 import Profile from '../profile/profile';
 import {Drawer} from '../drawer';
+import Polls from '../polls/polls';
+import Tasks from '../tasks/tasks';
+import Events from '../events/events';
 
 const Tabs = createBottomTabNavigator();
 class HomeTabs extends Component {
@@ -39,8 +42,8 @@ class HomeTabs extends Component {
           activeTintColor: Colors.textColor,
           inactiveTintColor: 'gray',
         }}>
-        <Tabs.Screen name="events" component={Login} />
-        <Tabs.Screen name="tasks" component={Login} />
+        <Tabs.Screen name="events" component={Events} />
+        <Tabs.Screen name="tasks" component={Tasks} />
         <Tabs.Screen
           name="add"
           options={{
@@ -53,7 +56,7 @@ class HomeTabs extends Component {
           }}
           component={Login}
         />
-        <Tabs.Screen name="polls" component={Drawer} />
+        <Tabs.Screen name="polls" component={Polls} />
         <Tabs.Screen name="profile" component={Profile} />
       </Tabs.Navigator>
     );

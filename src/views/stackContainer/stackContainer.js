@@ -6,6 +6,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import {Login} from '../login';
 import {ForgotLogin} from '../forgotLogin';
 import {HomeTabs} from '../homeTabs';
+import {Drawer} from '../drawer';
 
 const Stack = createStackNavigator();
 
@@ -34,7 +35,7 @@ class StackContainer extends Component {
           />
           <Stack.Screen
             name={'home'}
-            component={HomeTabs}
+            component={Drawer}
             options={{
               headerShown: false,
             }}
