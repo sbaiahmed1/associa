@@ -76,11 +76,9 @@ class Login extends Component {
               style={loginStyle.signInButton}
               onPress={_ => this.props.navigation.navigate('home')}>
               <LinearGradient
-                colors={[
-                  Colors.linearButton1,
-                  Colors.linearButton2,
-                  Colors.linearButton1,
-                ]}
+                colors={[Colors.linearButton1, Colors.linearButton2]}
+                start={{x: 0, y: 0.0}}
+                end={{x: 1, y: 1}}
                 style={loginStyle.gradientStyle}>
                 <Text style={loginStyle.textInsideGradient}>Sign In</Text>
               </LinearGradient>
