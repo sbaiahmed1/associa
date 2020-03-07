@@ -4,7 +4,7 @@ import {TouchableOpacity} from 'react-native';
 import {GlobalSheet} from '../../config';
 import {SafeAreaView} from 'react-native';
 
-class Events extends Component {
+class AddActivity extends Component {
   render() {
     return (
       <SafeAreaView>
@@ -21,10 +21,10 @@ class Events extends Component {
             }}>
             <Icon name="md-arrow-back" />
           </TouchableOpacity>
-          <Text>Events GO HERE</Text>
+          <Text>ADD GO HERE</Text>
         </View>
       </SafeAreaView>
     );
   }
 }
-export default Events;
+export default AddActivity;

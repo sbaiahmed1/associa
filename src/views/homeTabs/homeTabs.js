@@ -10,12 +10,14 @@ import {Drawer} from '../drawer';
 import Polls from '../polls/polls';
 import Tasks from '../tasks/tasks';
 import Events from '../events/events';
+import AddActivity from '../addActivity/addActivity';
 
 const Tabs = createBottomTabNavigator();
 class HomeTabs extends Component {
   render() {
     return (
       <Tabs.Navigator
+        initialRouteName={'add'}
         screenOptions={({route}) => ({
           tabBarIcon: ({focused, color, size}) => {
             let iconName;
@@ -54,7 +56,7 @@ class HomeTabs extends Component {
               </FloatingButton>
             ),
           }}
-          component={Login}
+          component={AddActivity}
         />
         <Tabs.Screen name="polls" component={Polls} />
         <Tabs.Screen name="profile" component={Profile} />
