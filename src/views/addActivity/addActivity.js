@@ -16,11 +16,11 @@ class AddActivity extends Component {
               padding: 2 * GlobalSheet.units.vh,
             }}
             onPress={() => {
-              console.log(this.props.navigation);
               this.props.navigation.push('home');
             }}>
             <Icon name="md-arrow-back" />
           </TouchableOpacity>
+          <Text>Payment</Text>
           <Text>ADD GO HERE</Text>
         </View>
       </SafeAreaView>
