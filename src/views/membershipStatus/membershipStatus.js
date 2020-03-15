@@ -32,13 +32,19 @@ class MembershipStatus extends Component {
               }}>
               <Icon name="md-arrow-back" />
             </TouchableOpacity>
-            <Text style={{alignSelf: 'center', justifyContent: 'center'}}>
+            <Text
+              style={{
+                alignSelf: 'center',
+                marginLeft: 28 * GlobalSheet.units.vw,
+                marginRight: 'auto',
+                fontSize: 3 * GlobalSheet.units.vh,
+              }}>
               Payment
             </Text>
           </View>
           <Card>
             <CardItem>
-              <Text>NativeBase</Text>
+              <Icon name={'university'} type={'FontAwesome5'} />
             </CardItem>
             <CardItem>
               <Body>
