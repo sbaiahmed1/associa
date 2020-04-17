@@ -46,43 +46,48 @@ function Tasks(props) {
   }
   var getData = async () => {
     const token = await AsyncStorage.getItem('@token');
-    if (jwt.decode(token, 'secret')) {
-      var options = {
-        accept: '*/*',
-        headers: {
-          token: token,
-        },
-      };
-      var url = 'https://nodebackend-pfe.herokuapp.com/task';
-      axios
-        .get(url, options)
-        .then(Response => {
-          let datas = Response.data;
-          DATA.done = [];
-          DATA.undone = [];
-          console.log(datas);
-          datas.map(data => {
-            if (data.checked === true) {
-              DATA.done.push(data);
-            } else {
-              DATA.undone.push(data);
-            }
+    if (token !== null && token) {
+      if (jwt.decode(token, 'secret')) {
+        var options = {
+          accept: '*/*',
+          headers: {
+            token: token,
+          },
+        };
+        var url = 'https://nodebackend-pfe.herokuapp.com/task';
+        axios
+          .get(url, options)
+          .then(Response => {
+            let datas = Response.data;
+            DATA.done = [];
+            DATA.undone = [];
+            console.log(datas);
+            datas.map(data => {
+              if (data.checked === true) {
+                DATA.done.push(data);
+              } else {
+                DATA.undone.push(data);
+              }
+            });
+            console.log('undone : ' + DATA.undone);
+            console.log('done : ' + DATA.done);
+            setLoading(false);
+          })
+          .catch(err => {
+            console.log(err);
+            // eslint-disable-next-line no-alert
+            alert('Session expired TASKS');
+            props.navigation.navigate('login');
           });
-          console.log('undone : ' + DATA.undone);
-          console.log('done : ' + DATA.done);
-          setLoading(false);
-        })
-        .catch(err => {
-          console.log(err);
-          // eslint-disable-next-line no-alert
-          alert('Session expired TASKS');
-          props.navigation.navigate('login');
-        });
+      } else {
+        console.log(false);
+        // eslint-disable-next-line no-alert
+        alert('Session expired here');
+        this.props.navigation.navigate('login');
+      }
     } else {
-      console.log(false);
-      // eslint-disable-next-line no-alert
       alert('Session expired here');
-      this.props.navigation.navigate('login');
+      props.navigation.navigate('login');
     }
   };
 

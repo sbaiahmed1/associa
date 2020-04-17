@@ -38,6 +38,8 @@ class Login extends Component {
       data: {
         name: '',
         last: '',
+        username: '',
+        email: '',
         type: '',
         role: '',
         imageName: '',
@@ -71,11 +73,13 @@ class Login extends Component {
         this.setState({
           token: response.data.token,
           data: {
-            name: response.data.userData.username,
-            last: response.data.userData.email,
+            name: response.data.userData.name,
+            lastName: response.data.userData.lastName,
             type: response.data.userData.type,
             role: response.data.userData.role,
             imageName: response.data.userData.imageName,
+            email: response.data.userData.email,
+            userName: response.data.userData.username,
           },
         });
         console.log(response.data);
@@ -93,6 +97,14 @@ class Login extends Component {
       .then(() => {
         this.props.navigation.navigate('home');
       })
+      .then(() => {
+        this.setState({
+          email: '',
+          password: '',
+        });
+        this.email.clear();
+        this.password.clear();
+      })
       .catch(error => {
         console.log(JSON.stringify(error));
         if (error) {
@@ -103,7 +115,7 @@ class Login extends Component {
         this.setState({isLoading: false});
       });
   };
-  componentDidMount(): void {
+  componentDidMount() {
     this.keyboardDidShowListener = Keyboard.addListener(
       'keyboardDidShow',
       this.keyboardDidShow,
@@ -139,6 +151,9 @@ class Login extends Component {
             placeholder="Example@email.com"
             keyboardType={'email-address'}
             onChangeText={text => this.setState({email: text})}
+            ref={input => {
+              this.email = input;
+            }}
           />
           <View>
             <TextInput
@@ -148,6 +163,9 @@ class Login extends Component {
               secureTextEntry={this.state.passwordHidden}
               returnKeyType={'send'}
               onChangeText={text => this.setState({password: text})}
+              ref={input => {
+                this.password = input;
+              }}
             />
             <FontAwesome5
               onPress={() =>

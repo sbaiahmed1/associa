@@ -8,16 +8,18 @@ import {TouchableOpacity, Text} from 'react-native';
 import {compose} from 'redux';
 import {connect} from 'react-redux';
 import {tokens} from '../../../values';
+import {Avatar} from '../../redux/actions/avatar';
 
 class Profile extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      ImageUri: 'https://www.dropbox.com/home?preview=Screenshot+(109).png',
+      ImageUri: '',
     };
     this.getAvatar = this.getAvatar.bind(this);
   }
   getAvatar = () => {
+    const props = this.props;
     const imageName = this.props.isLogged.imageName;
     const set = params => this.setState(params);
     dbx
@@ -32,6 +34,7 @@ class Profile extends Component {
               .then(function(ImageResponse) {
                 console.log(ImageResponse.link);
                 set({ImageUri: ImageResponse.link});
+                props.avatar({uri: ImageResponse.link});
               })
               .catch(error => {
                 console.log(error);
@@ -67,7 +70,7 @@ class Profile extends Component {
           <H1 style={profileStyle.Name}>
             {this.props.isLogged.name}
             {'\t'}
-            {this.props.isLogged.type}
+            {this.props.isLogged.lastName}
           </H1>
           <H3 style={profileStyle.Role}>{this.props.isLogged.role}</H3>
           <View style={profileStyle.buttonsContainer}>
@@ -107,6 +110,19 @@ const mapStateToProps = state => {
   console.log(state);
   return {
     isLogged: state.login,
+    avatar: state.avatar,
   };
 };
-export default compose(connect(mapStateToProps))(Profile);
+const mapDispatchToProps = dispatch => {
+  return {
+    avatar: state => {
+      dispatch(Avatar(state));
+    },
+  };
+};
+export default compose(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps,
+  ),
+)(Profile);

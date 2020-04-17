@@ -11,9 +11,11 @@ const LoginReducer = (state = init, action) => {
       return {
         isLogged: true,
         name: action.payload.name,
-        lastName: action.payload.last,
+        lastName: action.payload.lastName,
         type: action.payload.type,
         role: action.payload.role,
+        email: action.payload.email,
+        userName: action.payload.userName,
         imageName: action.payload.imageName,
       };
     case 'LOGIN_FAILED':

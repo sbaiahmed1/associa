@@ -29,9 +29,7 @@ function DrawerContent(props) {
         <View>
           <UserInfo
             onPress={() => props.navigation.navigate('profile')}
-            avatar={
-              'https://facebook.github.io/react-native/docs/assets/favicon.png'
-            }
+            avatar={props.avatar.imageUri}
             name={props.isLogged.name}
             lastName={'Sbai'}
           />
@@ -47,17 +45,42 @@ function DrawerContent(props) {
             <Text style={drawerStyle.textInsideBtn}>Events</Text>
           </TouchableOpacity>
           <View style={drawerStyle.separator} />
-          <TouchableOpacity
-            onPress={() => props.navigation.navigate('Events')}
+          {/* <TouchableOpacity
+            onPress={() => props.navigation.navigate('events')}
             style={drawerStyle.ButtonStyles}>
-            <Text style={drawerStyle.textInsideBtn}>Events</Text>
+            <Text style={drawerStyle.textInsideBtn}>Payments</Text>
           </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => props.navigation.navigate('events')}
+            style={drawerStyle.ButtonStyles}>
+            <Text style={drawerStyle.textInsideBtn}>Payments</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => props.navigation.navigate('events')}
+            style={drawerStyle.ButtonStyles}>
+            <Text style={drawerStyle.textInsideBtn}>Payments</Text>
+          </TouchableOpacity> */}
+          <View style={drawerStyle.separator} />
+          <TouchableOpacity
+            style={drawerStyle.ButtonStyles}
+            onPress={() => removeToken(props)}>
+            <Text style={drawerStyle.textInsideBtn}>Logout</Text>
+          </TouchableOpacity>
+          <View style={drawerStyle.separator} />
         </View>
       </LinearGradient>
     </DrawerContentScrollView>
   );
 }
-
+const removeToken = async props => {
+  try {
+    await AsyncStorage.removeItem('@token');
+    console.log('logged Out');
+    props.navigation.navigate('login');
+  } catch (e) {
+    console.log(e);
+  }
+};
 const DrawerNav = createDrawerNavigator();
 // Important NOTE : SET THE DRAWER TO CONTAIN BOTTOM  TAB
 class Drawer extends Component {
@@ -115,6 +138,7 @@ const mapStateToProps = state => {
   console.log(state);
   return {
     isLogged: state.login,
+    avatar: state.avatar,
   };
 };
 export default compose(connect(mapStateToProps))(Drawer);
