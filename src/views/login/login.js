@@ -34,7 +34,7 @@ class Login extends Component {
       password: '',
       token: null,
       isLoading: false,
-      passwordhidden: true,
+      passwordHidden: true,
       data: {
         name: '',
         last: '',
@@ -145,20 +145,20 @@ class Login extends Component {
               onSubmitEditing={() => this.login}
               style={loginStyle.textInputStyle}
               placeholder="********"
-              secureTextEntry={this.state.passwordShown}
+              secureTextEntry={this.state.passwordHidden}
               returnKeyType={'send'}
               onChangeText={text => this.setState({password: text})}
             />
             <FontAwesome5
               onPress={() =>
-                this.setState({passwordShown: !this.state.passwordShown})
+                this.setState({passwordHidden: !this.state.passwordHidden})
               }
               style={{
                 alignSelf: 'flex-end',
                 top: 10.5 * GlobalSheet.units.vh,
                 left: -7 * GlobalSheet.units.vw,
               }}
-              name={this.state.passwordShown ? 'eye' : 'eye-slash'}
+              name={this.state.passwordHidden ? 'eye' : 'eye-slash'}
               size={2.5 * GlobalSheet.units.vh}
             />
           </View>

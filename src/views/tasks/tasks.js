@@ -31,14 +31,19 @@ function wait(timeout) {
 //********************************************* */
 const done = <FontAwesome5 name={'check-double'} />;
 function Tasks(props) {
+  let [, setState] = useState();
   const [isLoading, setLoading] = useState(true);
   const [modalVisible, setModal] = useState(false);
   const [DATA, fillData] = useState({
     done: [],
     undone: [],
   });
+  const [refreshFlat, setRefreshFlat] = useState(false);
   const [ModalContent, setModalContent] = useState({});
-
+  function handleUpdate() {
+    //passing empty object will re-render the component
+    setState({});
+  }
   var getData = async () => {
     const token = await AsyncStorage.getItem('@token');
     if (jwt.decode(token, 'secret')) {
@@ -91,7 +96,12 @@ function Tasks(props) {
   ) : (
     <Container style={{backgroundColor: Colors.backgroundSecond}}>
       <Content>
-        <PTRView onRefresh={() => getData()} colors={Colors.textColor}>
+        <PTRView
+          onRefresh={() => {
+            getData();
+            handleUpdate();
+          }}
+          colors={Colors.textColor}>
           <TouchableOpacity
             // eslint-disable-next-line react-native/no-inline-styles
             style={{
@@ -129,6 +139,7 @@ function Tasks(props) {
             isVisible={modalVisible}
             press={setModal}
             content={ModalContent}
+            dismiss={getData()}
           />
           <FlatList
             data={DATA.done}
@@ -142,6 +153,7 @@ function Tasks(props) {
                     _id: item._id,
                     title: item.title,
                     checked: item.checked,
+                    content: item.content,
                   });
                   setModal(true);
                 }}
@@ -177,7 +189,7 @@ function EmptyList() {
         width: 75 * GlobalSheet.units.vw,
         alignSelf: 'center',
         borderRadius: 32,
-        elevation:5,
+        elevation: 5,
         margin: 3 * GlobalSheet.units.vw,
       }}>
       <Text style={{textAlign: 'center', padding: 6 * GlobalSheet.units.vw}}>

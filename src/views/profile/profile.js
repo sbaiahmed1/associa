@@ -7,6 +7,7 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import {TouchableOpacity, Text} from 'react-native';
 import {compose} from 'redux';
 import {connect} from 'react-redux';
+import {tokens} from '../../../values';
 
 class Profile extends Component {
   constructor(props) {
@@ -98,8 +99,7 @@ class Profile extends Component {
 }
 var Dropbox = require('dropbox').Dropbox;
 var dbx = new Dropbox({
-  accessToken:
-    'dStugumU_IAAAAAAAAAANWcvWmASQ_675g5YHIeAAx6BlfEUfg59X6NHnvMZWWvV',
+  accessToken: tokens.dropBoxApi,
   fetch: fetch,
 });
 
