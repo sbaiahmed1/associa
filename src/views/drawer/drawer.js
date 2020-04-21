@@ -1,75 +1,78 @@
 import React, {Component} from 'react';
-import {View, Text, Toast, Root} from 'native-base';
+import {View, Toast} from 'native-base';
 import {
   createDrawerNavigator,
-  DrawerItemList,
-  DrawerItem,
   DrawerContentScrollView,
 } from '@react-navigation/drawer';
-import {Profile} from '../profile';
 import {HomeTabs} from '../homeTabs';
-import {MembershipStatus} from '../membershipStatus';
 import UserInfo from '../../components/userInfo/userInfo';
-import colors from '../../config/colors';
-import LinearGradient from 'react-native-linear-gradient';
-import {TouchableOpacity, ToastAndroid} from 'react-native';
-import {Colors} from '../../config';
 import drawerStyle from './drawerStyle';
 import AsyncStorage from '@react-native-community/async-storage';
 import jwt from 'react-native-pure-jwt';
 import {compose} from 'redux';
 import {connect} from 'react-redux';
+import {ScrollView} from 'react-native';
+import DrawerOne from '../../components/drawerItem/drawerItem';
+const options = {
+  mainRoutes: [
+    {
+      routeName: 'tasks',
+      label: 'Tasks',
+    },
+    {
+      routeName: 'events',
+      label: 'Events',
+    },
+  ],
+};
 
 function DrawerContent(props) {
   return (
-    <DrawerContentScrollView {...props}>
-      <LinearGradient
-        colors={['#FFFFFF', Colors.backgroundSecond]}
-        start={{x: 0.5, y: 0}}>
-        <View>
-          <UserInfo
-            onPress={() => props.navigation.navigate('profile')}
-            avatar={props.avatar.imageUri}
-            name={props.isLogged.name}
-            lastName={'Sbai'}
-          />
-          <View style={drawerStyle.separator} />
-          <TouchableOpacity
-            onPress={() => props.navigation.navigate('tasks')}
-            style={drawerStyle.ButtonStyles}>
-            <Text style={drawerStyle.textInsideBtn}>Tasks</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => props.navigation.navigate('events')}
-            style={drawerStyle.ButtonStyles}>
-            <Text style={drawerStyle.textInsideBtn}>Events</Text>
-          </TouchableOpacity>
-          <View style={drawerStyle.separator} />
-          {/* <TouchableOpacity
-            onPress={() => props.navigation.navigate('events')}
-            style={drawerStyle.ButtonStyles}>
-            <Text style={drawerStyle.textInsideBtn}>Payments</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => props.navigation.navigate('events')}
-            style={drawerStyle.ButtonStyles}>
-            <Text style={drawerStyle.textInsideBtn}>Payments</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => props.navigation.navigate('events')}
-            style={drawerStyle.ButtonStyles}>
-            <Text style={drawerStyle.textInsideBtn}>Payments</Text>
-          </TouchableOpacity> */}
-          <View style={drawerStyle.separator} />
-          <TouchableOpacity
-            style={drawerStyle.ButtonStyles}
-            onPress={() => removeToken(props)}>
-            <Text style={drawerStyle.textInsideBtn}>Logout</Text>
-          </TouchableOpacity>
-          <View style={drawerStyle.separator} />
-        </View>
-      </LinearGradient>
-    </DrawerContentScrollView>
+    <View {...props}>
+      <UserInfo
+        onPress={() => props.navigation.navigate('profile')}
+        avatar={props.avatar.imageUri}
+        name={props.isLogged.name}
+        lastName={props.isLogged.lastName}
+        username={props.isLogged.userName}
+      />
+      <View style={drawerStyle.separator} />
+      <View>
+        {options.mainRoutes.map(singleRoute => {
+          return (
+            <DrawerOne
+              {...props}
+              label={singleRoute.label}
+              routeName={singleRoute.routeName}
+            />
+          );
+        })}
+      </View>
+      <View style={drawerStyle.separator} />
+      <View>
+        {options.mainRoutes.map(singleRoute => {
+          return (
+            <DrawerOne
+              {...props}
+              label={singleRoute.label}
+              routeName={singleRoute.routeName}
+            />
+          );
+        })}
+      </View>
+      <View style={drawerStyle.separator} />
+      <View>
+        {options.mainRoutes.map(singleRoute => {
+          return (
+            <DrawerOne
+              {...props}
+              label={singleRoute.label}
+              routeName={singleRoute.routeName}
+            />
+          );
+        })}
+      </View>
+    </View>
   );
 }
 const removeToken = async props => {

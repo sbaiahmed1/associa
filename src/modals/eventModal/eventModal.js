@@ -26,6 +26,7 @@ function EventModal(props) {
   let content = props.content;
   return (
     <Modal
+      hideModalContentWhileAnimating={true}
       deviceWidth={GlobalSheet.width}
       deviceHeight={GlobalSheet.height}
       animationType="slide"

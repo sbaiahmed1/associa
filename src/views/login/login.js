@@ -5,6 +5,7 @@ import {
   Text,
   TextInput,
   TouchableOpacity,
+  TouchableWithoutFeedback,
   Keyboard,
 } from 'react-native';
 import loginStyle from './loginStyle';
@@ -145,68 +146,70 @@ class Login extends Component {
       <View style={{flex: 1}}>
         {/************************************************************************/}
         <View style={{marginTop: this.state.position}}>
-          <Text style={loginStyle.titleStyle}>AssociaGest</Text>
-          <TextInput
-            style={loginStyle.textInputStyle}
-            placeholder="Example@email.com"
-            keyboardType={'email-address'}
-            onChangeText={text => this.setState({email: text})}
-            ref={input => {
-              this.email = input;
-            }}
-          />
-          <View>
+          <TouchableWithoutFeedback>
+            <Text style={loginStyle.titleStyle}>AssociaGest</Text>
             <TextInput
-              onSubmitEditing={() => this.login}
               style={loginStyle.textInputStyle}
-              placeholder="********"
-              secureTextEntry={this.state.passwordHidden}
-              returnKeyType={'send'}
-              onChangeText={text => this.setState({password: text})}
+              placeholder="Example@email.com"
+              keyboardType={'email-address'}
+              onChangeText={text => this.setState({email: text})}
               ref={input => {
-                this.password = input;
+                this.email = input;
               }}
             />
-            <FontAwesome5
-              onPress={() =>
-                this.setState({passwordHidden: !this.state.passwordHidden})
-              }
-              style={{
-                alignSelf: 'flex-end',
-                top: 10.5 * GlobalSheet.units.vh,
-                left: -7 * GlobalSheet.units.vw,
-              }}
-              name={this.state.passwordHidden ? 'eye' : 'eye-slash'}
-              size={2.5 * GlobalSheet.units.vh}
-            />
-          </View>
-          <View style={loginStyle.loginMethods}>
-            <TouchableOpacity
-              style={loginStyle.signInButton}
-              onPress={_ => this.login()}
-              disabled={this.state.password === '' ? true : false}>
-              <LinearGradient
-                colors={
-                  this.state.password === ''
-                    ? [Colors.grey4, Colors.grey5]
-                    : [Colors.linearButton1, Colors.linearButton2]
+            <View>
+              <TextInput
+                onSubmitEditing={() => this.login}
+                style={loginStyle.textInputStyle}
+                placeholder="********"
+                secureTextEntry={this.state.passwordHidden}
+                returnKeyType={'send'}
+                onChangeText={text => this.setState({password: text})}
+                ref={input => {
+                  this.password = input;
+                }}
+              />
+              <FontAwesome5
+                onPress={() =>
+                  this.setState({passwordHidden: !this.state.passwordHidden})
                 }
-                start={{x: 0, y: 0.0}}
-                end={{x: 1, y: 1}}
-                style={loginStyle.gradientStyle}>
-                <Text style={loginStyle.textInsideGradient}>Sign In</Text>
-              </LinearGradient>
+                style={{
+                  alignSelf: 'flex-end',
+                  top: 10.5 * GlobalSheet.units.vh,
+                  left: -7 * GlobalSheet.units.vw,
+                }}
+                name={this.state.passwordHidden ? 'eye' : 'eye-slash'}
+                size={2.5 * GlobalSheet.units.vh}
+              />
+            </View>
+            <View style={loginStyle.loginMethods}>
+              <TouchableOpacity
+                style={loginStyle.signInButton}
+                onPress={_ => this.login()}
+                disabled={this.state.password === '' ? true : false}>
+                <LinearGradient
+                  colors={
+                    this.state.password === ''
+                      ? [Colors.grey4, Colors.grey5]
+                      : [Colors.linearButton1, Colors.linearButton2]
+                  }
+                  start={{x: 0, y: 0.0}}
+                  end={{x: 1, y: 1}}
+                  style={loginStyle.gradientStyle}>
+                  <Text style={loginStyle.textInsideGradient}>Sign In</Text>
+                </LinearGradient>
+              </TouchableOpacity>
+            </View>
+            <View style={{top: '70%'}}>
+              <WaveIndicator animating={this.state.isLoading} />
+            </View>
+            <TouchableOpacity
+              onPress={() => this.props.navigation.navigate('forgotLogin')}
+              // eslint-disable-next-line react-native/no-inline-styles
+              style={{top: 30 * GlobalSheet.units.vh, alignSelf: 'center'}}>
+              <Text>Forgot Your Password?</Text>
             </TouchableOpacity>
-          </View>
-          <View style={{top: '70%'}}>
-            <WaveIndicator animating={this.state.isLoading} />
-          </View>
-          <TouchableOpacity
-            onPress={() => this.props.navigation.navigate('forgotLogin')}
-            // eslint-disable-next-line react-native/no-inline-styles
-            style={{top: 30 * GlobalSheet.units.vh, alignSelf: 'center'}}>
-            <Text>Forgot Your Password?</Text>
-          </TouchableOpacity>
+          </TouchableWithoutFeedback>
         </View>
         {/**************************************************************/}
       </View>

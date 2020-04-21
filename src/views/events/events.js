@@ -63,7 +63,7 @@ function Events(props) {
     setState({});
   }
   return (
-    <Container style={{backgroundColor: Colors.backgroundSecond}}>
+    <Container style={{backgroundColor: 'transparent'}}>
       <Content>
         <PTRView
           onRefresh={() => {

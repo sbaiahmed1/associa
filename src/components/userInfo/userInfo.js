@@ -23,6 +23,14 @@ function UserInfo(props) {
         {'\t'}
         {props.lastName}
       </Text>
+      <Text
+        style={{
+          left: '5%',
+          fontSize: 2 * GlobalSheet.units.vh,
+          color: Colors.grey2,
+        }}>
+        {'@' + props.username}
+      </Text>
     </TouchableOpacity>
   );
 }

@@ -7,8 +7,17 @@ import {connect} from 'react-redux';
 import {compose} from 'redux';
 
 class MainHome extends Component {
+  renderGreet = () => {
+    let current = new Date().toLocaleTimeString();
+    if (current > '18:00:00') {
+      return 'Good evening';
+    } else {
+      return 'Good Morning';
+    }
+  };
   render() {
     // console.log(this.props);
+    console.log(this.renderGreet());
     return (
       <SafeAreaView>
         <View>
@@ -23,10 +32,17 @@ class MainHome extends Component {
             }}>
             <Icon type={'FontAwesome5'} name="bars" />
           </TouchableOpacity>
-          <Text onPress={() => this.props.navigation.navigate('forgotLogin')}>
-            THis is the Main home
+          <Text style={{fontSize: 2.5 * GlobalSheet.units.vh}}>
+            {this.renderGreet()}
+            {'\t'}
+            <Text
+              style={{
+                fontSize: 2.5 * GlobalSheet.units.vh,
+                fontWeight: 'bold',
+              }}>
+              {'@' + this.props.isLogged.userName}
+            </Text>
           </Text>
-          <Text>Main tasks and shit</Text>
         </View>
       </SafeAreaView>
     );
