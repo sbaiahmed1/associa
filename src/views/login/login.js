@@ -143,10 +143,10 @@ class Login extends Component {
   }
   render() {
     return (
-      <View style={{flex: 1}}>
-        {/************************************************************************/}
-        <View style={{marginTop: this.state.position}}>
-          <TouchableWithoutFeedback>
+      <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+        <View style={{flex: 1}}>
+          {/************************************************************************/}
+          <View style={{marginTop: this.state.position}}>
             <Text style={loginStyle.titleStyle}>AssociaGest</Text>
             <TextInput
               style={loginStyle.textInputStyle}
@@ -209,10 +209,10 @@ class Login extends Component {
               style={{top: 30 * GlobalSheet.units.vh, alignSelf: 'center'}}>
               <Text>Forgot Your Password?</Text>
             </TouchableOpacity>
-          </TouchableWithoutFeedback>
+          </View>
+          {/**************************************************************/}
         </View>
-        {/**************************************************************/}
-      </View>
+      </TouchableWithoutFeedback>
     );
   }
 }

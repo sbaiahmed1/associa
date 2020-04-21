@@ -118,7 +118,13 @@ function Events(props) {
             // ItemSeparatorComponent={renderSeparator}
             ListEmptyComponent={EmptyList}
           />
-          <Text style={{marginLeft: 5 * GlobalSheet.units.vw, fontSize: 2.5 * GlobalSheet.units.vh}}>Past Events</Text>
+          <Text
+            style={{
+              marginLeft: 5 * GlobalSheet.units.vw,
+              fontSize: 2.5 * GlobalSheet.units.vh,
+            }}>
+            Past Events
+          </Text>
           <FlatList
             data={events.past}
             renderItem={({item}) => (
