@@ -2,19 +2,38 @@ import React, {useState} from 'react';
 import {
   StyleSheet,
   View,
-  Alert,
-  TouchableHighlight,
   Text,
   TouchableOpacity,
+  AsyncStorage,
 } from 'react-native';
 import {Container, Content} from 'native-base';
-import {GlobalSheet} from '../config';
+import {GlobalSheet} from '../../config';
 import Modal from 'react-native-modal';
-
+import axios from 'axios';
+import {baseUrl} from '../../config/const';
 /****************************************************************** */
-
 function TaskModal(props) {
+  let token = AsyncStorage.getItem('@token');
   let content = props.content;
+  const updateTaskStatus = () => {
+    let url = baseUrl + 'task';
+    var myHeaders = new Headers();
+    myHeaders.append('Content-Type', 'application/json');
+
+    var body = {
+      checked: content.checked ? 'false' : 'true',
+      taskId: content._id,
+    };
+    var requestOptions = {
+      // headers: myHeaders,
+      body: body,
+    };
+    axios
+      .put('https://nodebackend-pfe.herokuapp.com/task/', body)
+      .then(response => response)
+      .then(result => console.log(result))
+      .catch(error => console.log('error', error));
+  };
   return (
     <Modal
       animationType="slide"
@@ -30,12 +49,25 @@ function TaskModal(props) {
         <Content>
           <Text style={styles.modalTitle}>{'' || content.title}</Text>
           <Text style={styles.textStyle}>{'' || content.content}</Text>
-          <View style={{flex: 1, flexDirection: 'row', width: '100%'}}>
+          <View
+            // eslint-disable-next-line react-native/no-inline-styles
+            style={{
+              flex: 1,
+              flexDirection: 'row',
+              width: '100%',
+              justifyContent: 'space-evenly',
+            }}>
             <TouchableOpacity
+              // eslint-disable-next-line react-native/no-inline-styles
               style={{
-                backgroundColor: '#2196F3',
+                backgroundColor: 'white',
                 flexDirection: 'row',
                 width: '40%',
+                borderRadius: 32,
+                height: 6 * GlobalSheet.units.vh,
+                elevation: 5,
+                padding: 1.5 * GlobalSheet.units.vh,
+                margin: 1 * GlobalSheet.units.vh,
               }}
               onPress={() => {
                 props.press(false);
@@ -44,11 +76,18 @@ function TaskModal(props) {
               <Text>Close</Text>
             </TouchableOpacity>
             <TouchableOpacity
+              // eslint-disable-next-line react-native/no-inline-styles
               style={{
-                backgroundColor: '#2196F3',
+                backgroundColor: 'white',
                 flexDirection: 'row',
-                width: '40%',
-              }}>
+                width: '50%',
+                borderRadius: 32,
+                height: 6 * GlobalSheet.units.vh,
+                elevation: 5,
+                padding: 1.5 * GlobalSheet.units.vh,
+                margin: 1 * GlobalSheet.units.vh,
+              }}
+              onPress={() => updateTaskStatus()}>
               <Text>Mark as {content.checked ? 'undone' : 'done'}</Text>
             </TouchableOpacity>
           </View>
@@ -81,7 +120,7 @@ const styles = StyleSheet.create({
     width: 78 * GlobalSheet.units.vw,
     alignSelf: 'center',
     top: '10%',
-    marginBottom: '40%',
+    marginBottom: '50%',
   },
   textStyle: {
     textAlign: 'center',

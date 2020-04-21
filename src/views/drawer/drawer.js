@@ -107,11 +107,11 @@ class Drawer extends Component {
             this.props.navigation.navigate('login');
           });
       } else {
-        Toast.show({text: 'Session fucked'});
+        Toast.show({text: 'Session Expired'});
         this.props.navigation.navigate('login');
       }
     } catch (e) {
-      Toast.show({text: 'Session fucked'});
+      Toast.show({text: 'Session Expired'});
       console.log(e);
       this.props.navigation.navigate('login');
     }

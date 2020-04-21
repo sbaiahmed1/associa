@@ -14,7 +14,7 @@ class Profile extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      ImageUri: '',
+      ImageUri: this.props.avatar.imageUri,
     };
     this.getAvatar = this.getAvatar.bind(this);
   }

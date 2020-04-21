@@ -1,2 +1,3 @@
 const baseUrl = 'https://nodebackend-pfe.herokuapp.com/';
-export {baseUrl};
+const fontSize = 3;
+export {baseUrl, fontSize};

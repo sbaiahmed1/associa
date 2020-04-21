@@ -1,24 +1,14 @@
 import React, {useState, useEffect} from 'react';
-import {
-  taskStyleheet,
-  View,
-  StatusBar,
-  Text,
-  TouchableOpacity,
-  FlatList,
-  TouchableWithoutFeedback,
-  TouchableHighlight,
-} from 'react-native';
+import {View, Text, TouchableOpacity, FlatList} from 'react-native';
 import axios from 'axios';
 import PTRView from 'react-native-pull-to-refresh';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import MaterialCheckbox from '../../components/materialCheckBox/materialCheckBox';
 import TaskContainer from '../../components/taskContainer/taskContainer';
 import taskStyle from './tasksStyle';
 import {Colors, GlobalSheet} from '../../config';
 import {Container, Content} from 'native-base';
 import {WaveIndicator} from 'react-native-indicators';
-import TaskModal from '../../modals/taskModal';
+import TaskModal from '../../modals/taskModal/taskModal';
 import AsyncStorage from '@react-native-community/async-storage';
 import jwt from 'react-native-pure-jwt';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
@@ -117,7 +107,13 @@ function Tasks(props) {
             onPress={() => props.navigation.toggleDrawer()}>
             <Icon type={'FontAwesome5'} name="bars" size={25} />
           </TouchableOpacity>
-          <Text style={{marginLeft: 30, fontSize: 15}}>Upcoming Tasks</Text>
+          <Text
+            style={{
+              marginLeft: 5 * GlobalSheet.units.vw,
+              fontSize: 2.5 * GlobalSheet.units.vh,
+            }}>
+            Upcoming Tasks
+          </Text>
           <FlatList
             data={DATA.undone}
             renderItem={({item}) => (
@@ -139,7 +135,13 @@ function Tasks(props) {
             ItemSeparatorComponent={renderSeparator}
             ListEmptyComponent={EmptyList}
           />
-          <Text>Done Tasks</Text>
+          <Text
+            style={{
+              marginLeft: 5 * GlobalSheet.units.vw,
+              fontSize: 2.5 * GlobalSheet.units.vh,
+            }}>
+            Done Tasks
+          </Text>
           <TaskModal
             isVisible={modalVisible}
             press={setModal}

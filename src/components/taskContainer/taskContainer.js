@@ -14,7 +14,7 @@ function TaskContainer(props) {
 
 const styles = StyleSheet.create({
   container: {
-    height: 75,
+    height: 10 * GlobalSheet.units.vh,
     backgroundColor: Colors.backgroundFirst,
     borderRadius: 32,
     shadowOpacity: 1,
