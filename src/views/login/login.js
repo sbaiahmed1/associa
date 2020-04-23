@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   TouchableWithoutFeedback,
   Keyboard,
+  Image,
 } from 'react-native';
 import loginStyle from './loginStyle';
 import {connect} from 'react-redux';
@@ -18,14 +19,9 @@ import {baseUrl} from '../../config/const';
 import {Toast} from 'native-base';
 import AsyncStorage from '@react-native-community/async-storage';
 import {WaveIndicator} from 'react-native-indicators';
-import store from '../../redux/store/store';
 import {loggedIn} from '../../redux/actions/login';
-
-const facebook = (
-  <FontAwesome5 name={'facebook-f'} size={3 * GlobalSheet.units.vh} />
-);
-const google = <FontAwesome5 name={'google'} size={3 * GlobalSheet.units.vh} />;
-
+const logo = require('../../assets/logo.png');
+const logoColor = require('../../assets/logo_color.png');
 class Login extends Component {
   constructor(props) {
     super(props);
@@ -129,12 +125,12 @@ class Login extends Component {
 
   keyboardDidShow = () => {
     this.setState({
-      position: -5 * GlobalSheet.units.vh,
+      position: -9 * GlobalSheet.units.vh,
     });
   };
   keyboardDismissed = () => {
     this.setState({
-      position: 70,
+      position: 15 * GlobalSheet.units.vh,
     });
   };
   componentWillUnmount() {
@@ -147,7 +143,10 @@ class Login extends Component {
         <View style={{flex: 1}}>
           {/************************************************************************/}
           <View style={{marginTop: this.state.position}}>
-            <Text style={loginStyle.titleStyle}>AssociaGest</Text>
+            <Image
+              source={this.state.password === '' ? logo : logoColor}
+              style={loginStyle.titleStyle}
+            />
             <TextInput
               style={loginStyle.textInputStyle}
               placeholder="Example@email.com"

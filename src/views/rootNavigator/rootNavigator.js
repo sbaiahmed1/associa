@@ -7,6 +7,7 @@ import {Drawer} from '../drawer';
 import {Root} from 'native-base';
 import StackContainer from '../stackContainer/stackContainer';
 import PushController from '../../config/notificationHandler';
+import MembershipContainer from '../membershipContainer/memberShipContainer';
 
 const Stack = createStackNavigator();
 class RootNavigator extends Component {
@@ -37,6 +38,13 @@ class RootNavigator extends Component {
                 headerShown: false,
               }}
             />
+            {/* <Stack.Screen
+              name={'payments'}
+              component={MembershipContainer}
+              options={{
+                headerShown: false,
+              }}
+            /> */}
           </Stack.Navigator>
         </NavigationContainer>
       </Root>

@@ -4,10 +4,10 @@ import colors from '../../config/colors';
 
 let loginStyle = StyleSheet.create({
   titleStyle: {
-    color: Colors.textColor,
-    fontSize: 5 * GlobalSheet.units.vh,
     alignSelf: 'center',
     top: 10 * GlobalSheet.units.vh,
+    height: 15 * GlobalSheet.units.vh,
+    width: 43 * GlobalSheet.units.vw,
   },
   textInputStyle: {
     borderBottomColor: Colors.textColor,

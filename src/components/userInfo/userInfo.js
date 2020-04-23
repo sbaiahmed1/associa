@@ -15,7 +15,11 @@ function UserInfo(props) {
       onPress={props.onPress}>
       <Avatar.Image
         // eslint-disable-next-line react-native/no-inline-styles
-        style={{alignSelf: 'flex-start', left: '5%'}}
+        style={{
+          alignSelf: 'flex-start',
+          left: '5%',
+          marginTop: 2 * GlobalSheet.units.vh,
+        }}
         size={12 * GlobalSheet.units.vh}
         source={{uri: props.avatar}}
       />

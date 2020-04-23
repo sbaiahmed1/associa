@@ -12,6 +12,7 @@ import TaskModal from '../../modals/taskModal/taskModal';
 import AsyncStorage from '@react-native-community/async-storage';
 import jwt from 'react-native-pure-jwt';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import SplashScreen from '../spalshScreen/splashScreen';
 //****************************************** */
 function wait(timeout) {
   return new Promise(resolve => {
@@ -87,7 +88,7 @@ function Tasks(props) {
   }, []);
 
   return isLoading ? (
-    <WaveIndicator animating={isLoading} />
+    <SplashScreen animating={isLoading} />
   ) : (
     <Container style={{backgroundColor: Colors.backgroundSecond}}>
       <Content>

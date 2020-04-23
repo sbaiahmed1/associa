@@ -12,7 +12,7 @@ function DrawerOne(props) {
         if (props.routeName) {
           props.navigation.navigate(props.routeName);
         } else {
-          props.press();
+          props.press(props);
         }
       }}
       style={styles.ButtonStyles}>

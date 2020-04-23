@@ -1,13 +1,10 @@
 import React, {Component} from 'react';
 import {View, Text} from 'native-base';
+import SplashScreen from '../spalshScreen/splashScreen';
 
 class Polls extends Component {
   render() {
-    return (
-      <View>
-        <Text>Polls can go here</Text>
-      </View>
-    );
+    return <SplashScreen />;
   }
 }
 export default Polls;

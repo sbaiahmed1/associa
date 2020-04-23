@@ -14,6 +14,7 @@ import {connect} from 'react-redux';
 import {StyleSheet, ScrollView} from 'react-native';
 import DrawerOne from '../../components/drawerItem/drawerItem';
 import {GlobalSheet} from '../../config';
+import MembershipContainer from '../membershipContainer/memberShipContainer';
 const options = {
   mainRoutes: [
     {
@@ -158,6 +159,7 @@ class Drawer extends Component {
         initialRouteName="home"
         drawerContent={() => <DrawerContent {...this.props} />}>
         <DrawerNav.Screen name="home" component={HomeTabs} />
+        <DrawerNav.Screen name="payments" component={MembershipContainer} />
       </DrawerNav.Navigator>
     );
   }
