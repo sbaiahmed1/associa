@@ -32,7 +32,7 @@ class HomeTabs extends Component {
                   iconName = focused ? 'tasks' : 'tasks';
                   break;
                 case 'events':
-                  iconName = focused ? 'calendar' : 'calendar';
+                  iconName = focused ? 'calendar-day' : 'calendar-day';
                   break;
                 case 'mainHome':
                   iconName = focused ? 'home' : 'home';

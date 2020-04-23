@@ -3,7 +3,7 @@ import {GlobalSheet, Colors} from '../../config';
 const drawerStyle = StyleSheet.create({
   separator: {
     backgroundColor: Colors.backgroundSecond,
-    height: '2%',
+    height: '0.5%',
   },
 });
 export default drawerStyle;

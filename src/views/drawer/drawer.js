@@ -11,24 +11,49 @@ import AsyncStorage from '@react-native-community/async-storage';
 import jwt from 'react-native-pure-jwt';
 import {compose} from 'redux';
 import {connect} from 'react-redux';
-import {ScrollView} from 'react-native';
+import {StyleSheet, ScrollView} from 'react-native';
 import DrawerOne from '../../components/drawerItem/drawerItem';
+import {GlobalSheet} from '../../config';
 const options = {
   mainRoutes: [
     {
+      routeName: 'mainHome',
+      label: 'Home',
+      iconName: 'home',
+    },
+    {
       routeName: 'tasks',
       label: 'Tasks',
+      iconName: 'tasks',
     },
     {
       routeName: 'events',
       label: 'Events',
+      iconName: 'calendar-day',
+    },
+    {
+      routeName: 'polls',
+      label: 'Polls',
+      iconName: 'poll',
+    },
+  ],
+  paymentAndStuff: [
+    {
+      routeName: 'payments',
+      label: 'Payments and Subscription',
+      iconName: 'money-check',
+    },
+    {
+      routeName: 'help',
+      label: 'Help And FAQ',
+      iconName: 'info-circle',
     },
   ],
 };
 
 function DrawerContent(props) {
   return (
-    <View {...props}>
+    <ScrollView style={styles.drawerContent} {...props}>
       <UserInfo
         onPress={() => props.navigation.navigate('profile')}
         avatar={props.avatar.imageUri}
@@ -44,35 +69,35 @@ function DrawerContent(props) {
               {...props}
               label={singleRoute.label}
               routeName={singleRoute.routeName}
+              iconName={singleRoute.iconName}
             />
           );
         })}
       </View>
       <View style={drawerStyle.separator} />
       <View>
-        {options.mainRoutes.map(singleRoute => {
+        {options.paymentAndStuff.map(singleRoute => {
           return (
             <DrawerOne
               {...props}
               label={singleRoute.label}
               routeName={singleRoute.routeName}
+              iconName={singleRoute.iconName}
             />
           );
         })}
       </View>
       <View style={drawerStyle.separator} />
-      <View>
-        {options.mainRoutes.map(singleRoute => {
-          return (
-            <DrawerOne
-              {...props}
-              label={singleRoute.label}
-              routeName={singleRoute.routeName}
-            />
-          );
-        })}
+      <View
+        style={{alignSelf: 'flex-end', paddingEnd: 1.5 * GlobalSheet.units.vh}}>
+        <DrawerOne
+          {...props}
+          press={removeToken}
+          iconName={'sign-out-alt'}
+          label={'Logout'}
+        />
       </View>
-    </View>
+    </ScrollView>
   );
 }
 const removeToken = async props => {
@@ -144,4 +169,44 @@ const mapStateToProps = state => {
     avatar: state.avatar,
   };
 };
+
+const styles = StyleSheet.create({
+  drawerContent: {
+    flex: 1,
+  },
+  userInfoSection: {
+    paddingLeft: 20,
+  },
+  title: {
+    marginTop: 20,
+    fontWeight: 'bold',
+  },
+  caption: {
+    fontSize: 14,
+    lineHeight: 14,
+  },
+  row: {
+    marginTop: 20,
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  section: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginRight: 15,
+  },
+  paragraph: {
+    fontWeight: 'bold',
+    marginRight: 3,
+  },
+  drawerSection: {
+    marginTop: 15,
+  },
+  preference: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingVertical: 12,
+    paddingHorizontal: 16,
+  },
+});
 export default compose(connect(mapStateToProps))(Drawer);
