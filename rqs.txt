@@ -1,0 +1,12 @@
+Button li fel profile whatsapp style!
+
+border raidus 6/4
+elevation none
+past polls
+
+polls : 
+
+home: border rad 6/4
+
+margin between elements:~6px
+

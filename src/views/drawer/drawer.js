@@ -55,42 +55,66 @@ const options = {
 function DrawerContent(props) {
   return (
     <ScrollView style={styles.drawerContent} {...props}>
-      <UserInfo
-        onPress={() => props.navigation.navigate('profile')}
-        avatar={props.avatar.imageUri}
-        name={props.isLogged.name}
-        lastName={props.isLogged.lastName}
-        username={props.isLogged.userName}
-      />
-      <View style={drawerStyle.separator} />
       <View>
-        {options.mainRoutes.map(singleRoute => {
-          return (
-            <DrawerOne
-              {...props}
-              label={singleRoute.label}
-              routeName={singleRoute.routeName}
-              iconName={singleRoute.iconName}
-            />
-          );
-        })}
-      </View>
-      <View style={drawerStyle.separator} />
-      <View>
-        {options.paymentAndStuff.map(singleRoute => {
-          return (
-            <DrawerOne
-              {...props}
-              label={singleRoute.label}
-              routeName={singleRoute.routeName}
-              iconName={singleRoute.iconName}
-            />
-          );
-        })}
-      </View>
-      <View style={drawerStyle.separator} />
-      <View
-        style={{alignSelf: 'flex-end', paddingEnd: 1.5 * GlobalSheet.units.vh}}>
+        <View>
+          <UserInfo
+            onPress={() => props.navigation.navigate('profile')}
+            avatar={props.avatar.imageUri}
+            name={props.isLogged.name}
+            lastName={props.isLogged.lastName}
+            username={props.isLogged.userName}
+          />
+        </View>
+        <View style={drawerStyle.separator} />
+        <View>
+          {options.mainRoutes.map(singleRoute => {
+            return (
+              <DrawerOne
+                {...props}
+                label={singleRoute.label}
+                routeName={singleRoute.routeName}
+                iconName={singleRoute.iconName}
+                focused={({focused}) => {
+                  return focused;
+                }}
+              />
+            );
+          })}
+        </View>
+        <View style={drawerStyle.separator} />
+        <View>
+          {options.paymentAndStuff.map(singleRoute => {
+            return (
+              <DrawerOne
+                {...props}
+                label={singleRoute.label}
+                routeName={singleRoute.routeName}
+                iconName={singleRoute.iconName}
+              />
+            );
+          })}
+        </View>
+        <View style={drawerStyle.separator} />
+        <View>
+          {options.paymentAndStuff.map(singleRoute => {
+            return (
+              <DrawerOne
+                {...props}
+                label={singleRoute.label}
+                routeName={singleRoute.routeName}
+                iconName={singleRoute.iconName}
+              />
+            );
+          })}
+        </View>
+        <View style={drawerStyle.separator} />
+        <DrawerOne
+          {...props}
+          press={removeToken}
+          iconName={'sign-out-alt'}
+          label={'Logout'}
+        />
+        <View style={drawerStyle.separator} />
         <DrawerOne
           {...props}
           press={removeToken}
@@ -133,16 +157,16 @@ class Drawer extends Component {
               textStyle: {textAlign: 'center'},
               type: 'warning',
             });
-            this.props.navigation.navigate('login');
+            // this.props.navigation.navigate('login');
           });
       } else {
         Toast.show({text: 'Session Expired'});
-        this.props.navigation.navigate('login');
+        // this.props.navigation.navigate('login');
       }
     } catch (e) {
       Toast.show({text: 'Session Expired'});
       console.log(e);
-      this.props.navigation.navigate('login');
+      // this.props.navigation.navigate('login');
     }
   };
   componentDidMount() {
@@ -153,7 +177,7 @@ class Drawer extends Component {
       <DrawerNav.Navigator
         // eslint-disable-next-line react-native/no-inline-styles
         drawerStyle={{
-          width: 320,
+          width: 80 * GlobalSheet.units.vw,
         }}
         drawerType={'slide'}
         initialRouteName="home"

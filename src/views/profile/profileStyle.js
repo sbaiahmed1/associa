@@ -4,37 +4,34 @@ import {Colors, GlobalSheet} from '../../config';
 const profileStyle = StyleSheet.create({
   thumbnail: {
     alignSelf: 'center',
-    margin: 1 * GlobalSheet.units.vh,
-    height: 20 * GlobalSheet.units.vh,
-    width: 20 * GlobalSheet.units.vh,
+    height: 55 * GlobalSheet.units.vh,
+    width: '100%',
     borderRadius: 100,
   },
   Name: {
-    alignSelf: 'center',
+    position: 'absolute',
+    bottom: 3 * GlobalSheet.units.vh,
     padding: 1 * GlobalSheet.units.vh,
-    color: Colors.textColor,
+    color: Colors.whiteTextColor,
   },
   Role: {
-    alignSelf: 'center',
-    color: Colors.textColor,
+    position: 'absolute',
+    bottom: 0 * GlobalSheet.units.vh,
+    padding: 1 * GlobalSheet.units.vh,
+    color: Colors.whiteTextColor,
   },
   ButtonStyles: {
-    width: 85 * GlobalSheet.units.vw,
-    alignSelf: 'center',
-    borderRadius: 32,
+    width: 100 * GlobalSheet.units.vw,
+    borderRadius: 6,
     height: 8 * GlobalSheet.units.vh,
-    elevation: 5,
     padding: 2.5 * GlobalSheet.units.vh,
-    margin: 0.5 * GlobalSheet.units.vh,
     backgroundColor: Colors.backgroundFirst,
+    borderBottomColor: Colors.dividerColor,
+    borderBottomWidth: 0.2 * GlobalSheet.units.vh,
   },
   textInsideBtn: {
-    alignSelf: 'center',
     color: Colors.textColor,
     fontSize: 2.7 * GlobalSheet.units.vh,
-  },
-  buttonsContainer: {
-    padding: 7 * GlobalSheet.units.vh,
   },
 });
 export default profileStyle;

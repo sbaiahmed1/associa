@@ -29,10 +29,10 @@ export default class SplashScreen extends Component {
         <Animated.Image
           style={{
             opacity,
-            height: 15 * GlobalSheet.units.vh,
-            width: 43 * GlobalSheet.units.vw,
+            height: 10 * GlobalSheet.units.vh,
+            width: 29 * GlobalSheet.units.vw,
           }}
-          source={require('../../assets/logo.png')}
+          source={require('../../assets/noTextLogo.png')}
         />
       </View>
     );

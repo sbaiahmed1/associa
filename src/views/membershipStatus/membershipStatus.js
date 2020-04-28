@@ -53,7 +53,7 @@ class MembershipStatus extends Component {
   }
   render() {
     return (
-      <Container>
+      <Container style={{backgroundColor: Colors.backgroundSecond}}>
         <Content>
           <View style={{flexDirection: 'row', flex: 1}}>
             <TouchableOpacity
@@ -105,13 +105,16 @@ class MembershipStatus extends Component {
               alignSelf: 'center',
               height: 8 * GlobalSheet.units.vh,
               elevation: 5,
-              padding: 2 * GlobalSheet.units.vh,
+              padding: 2.5 * GlobalSheet.units.vh,
               backgroundColor: Colors.backgroundFirst,
               borderRadius: 32,
               width: '50%',
               margin: 2 * GlobalSheet.units.vh,
               alignItems: 'center',
-            }}>
+            }}
+            onPress={() =>
+              this.props.navigation.navigate('paymentChoosingPage')
+            }>
             <Text>Pay Now</Text>
           </TouchableOpacity>
         </Content>

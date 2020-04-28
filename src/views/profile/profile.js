@@ -1,14 +1,20 @@
 import React, {Component} from 'react';
-import {Thumbnail, Container, Content, H1, H3, View, Icon} from 'native-base';
+import {Thumbnail, Container, Content, H1, H3, View} from 'native-base';
 import profileStyle from './profileStyle';
 import {Colors, GlobalSheet} from '../../config';
 import LinearGradient from 'react-native-linear-gradient';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
-import {TouchableOpacity, Text} from 'react-native';
+import {
+  TouchableOpacity,
+  Text,
+  ImageBackground,
+  ImageBackgroundBase,
+} from 'react-native';
 import {compose} from 'redux';
 import {connect} from 'react-redux';
 import {tokens} from '../../../values';
 import {Avatar} from '../../redux/actions/avatar';
+import HeaderInTabs from '../../components/headerInTabs/headerInTabs';
 
 class Profile extends Component {
   constructor(props) {
@@ -53,46 +59,37 @@ class Profile extends Component {
     return (
       <Container style={{backgroundColor: Colors.backgroundSecond}}>
         <Content>
-          <TouchableOpacity
-            // eslint-disable-next-line react-native/no-inline-styles
-            style={{
-              elevation: 0,
-              backgroundColor: 'transparent',
-              padding: 2 * GlobalSheet.units.vh,
-            }}
-            onPress={() => this.props.navigation.toggleDrawer()}>
-            <Icon type={'FontAwesome5'} name="bars" />
-          </TouchableOpacity>
-          <Thumbnail
+          <ImageBackground
             style={profileStyle.thumbnail}
-            source={{uri: this.state.ImageUri}}
-          />
-          <H1 style={profileStyle.Name}>
-            {this.props.isLogged.name}
-            {'\t'}
-            {this.props.isLogged.lastName}
-          </H1>
-          <H3 style={profileStyle.Role}>{this.props.isLogged.role}</H3>
+            source={{uri: this.state.ImageUri}}>
+            <HeaderInTabs {...this.props} />
+            <H1 style={profileStyle.Name}>
+              {this.props.isLogged.name}
+              {'\t'}
+              {this.props.isLogged.lastName}
+            </H1>
+            <H3 style={profileStyle.Role}>{this.props.isLogged.role}</H3>
+          </ImageBackground>
           <View style={profileStyle.buttonsContainer}>
             <TouchableOpacity
               onPress={() => this.props.navigation.navigate('tasks')}
               style={profileStyle.ButtonStyles}>
-              <Text style={profileStyle.textInsideBtn}>Tasks</Text>
+              <Text style={profileStyle.textInsideBtn}>Past Events</Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() => this.props.navigation.navigate('tasks')}
               style={profileStyle.ButtonStyles}>
-              <Text style={profileStyle.textInsideBtn}>Tasks</Text>
+              <Text style={profileStyle.textInsideBtn}>Past Polls</Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() => this.props.navigation.navigate('tasks')}
               style={profileStyle.ButtonStyles}>
-              <Text style={profileStyle.textInsideBtn}>Tasks</Text>
+              <Text style={profileStyle.textInsideBtn}>Past Tasks</Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() => this.props.navigation.navigate('tasks')}
               style={profileStyle.ButtonStyles}>
-              <Text style={profileStyle.textInsideBtn}>Tasks</Text>
+              <Text style={profileStyle.textInsideBtn}>Settings</Text>
             </TouchableOpacity>
           </View>
         </Content>

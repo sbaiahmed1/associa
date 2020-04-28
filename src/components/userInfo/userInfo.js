@@ -1,41 +1,39 @@
 import React from 'react';
-import {TouchableOpacity} from 'react-native';
+import {TouchableOpacity, ImageBackground} from 'react-native';
 import {Container, Text} from 'native-base';
 import {Colors, GlobalSheet} from '../../config';
 import {Avatar} from 'react-native-paper';
 
 function UserInfo(props) {
   return (
-    <TouchableOpacity
-      // eslint-disable-next-line react-native/no-inline-styles
-      style={{
-        borderRadius: 32,
-        padding: 1 * GlobalSheet.units.vw,
-      }}
-      onPress={props.onPress}>
-      <Avatar.Image
+    <TouchableOpacity onPress={props.onPress}>
+      <ImageBackground
         // eslint-disable-next-line react-native/no-inline-styles
-        style={{
-          alignSelf: 'flex-start',
-          left: '5%',
-          marginTop: 2 * GlobalSheet.units.vh,
-        }}
-        size={12 * GlobalSheet.units.vh}
-        source={{uri: props.avatar}}
-      />
-      <Text style={{left: '5%', fontSize: 3 * GlobalSheet.units.vh}}>
-        {props.name}
-        {'\t'}
-        {props.lastName}
-      </Text>
-      <Text
-        style={{
-          left: '5%',
-          fontSize: 2 * GlobalSheet.units.vh,
-          color: Colors.grey2,
-        }}>
-        {'@' + props.username}
-      </Text>
+        style={{height: 20 * GlobalSheet.units.vh}}
+        source={{uri: props.avatar}}>
+        <Text
+          style={{
+            color: Colors.whiteTextColor,
+            position: 'absolute',
+            bottom: 2 * GlobalSheet.units.vh,
+            fontSize: 2.5 * GlobalSheet.units.vh,
+            paddingLeft: 1 * GlobalSheet.units.vw,
+          }}>
+          {props.name}
+          {'\t'}
+          {props.lastName}
+        </Text>
+        <Text
+          style={{
+            color: Colors.whiteTextColor,
+            position: 'absolute',
+            bottom: 0,
+            fontSize: 2 * GlobalSheet.units.vh,
+            paddingLeft: 1 * GlobalSheet.units.vw,
+          }}>
+          {'@' + 'association'}
+        </Text>
+      </ImageBackground>
     </TouchableOpacity>
   );
 }

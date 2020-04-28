@@ -13,6 +13,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 import jwt from 'react-native-pure-jwt';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import SplashScreen from '../spalshScreen/splashScreen';
+import HeaderInTabs from '../../components/headerInTabs/headerInTabs';
 //****************************************** */
 function wait(timeout) {
   return new Promise(resolve => {
@@ -98,16 +99,7 @@ function Tasks(props) {
             handleUpdate();
           }}
           colors={Colors.textColor}>
-          <TouchableOpacity
-            // eslint-disable-next-line react-native/no-inline-styles
-            style={{
-              elevation: 0,
-              backgroundColor: 'transparent',
-              padding: 2 * GlobalSheet.units.vh,
-            }}
-            onPress={() => props.navigation.toggleDrawer()}>
-            <Icon type={'FontAwesome5'} name="bars" size={25} />
-          </TouchableOpacity>
+          <HeaderInTabs {...props} />
           <Text
             style={{
               marginLeft: 5 * GlobalSheet.units.vw,

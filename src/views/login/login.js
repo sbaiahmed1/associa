@@ -12,7 +12,6 @@ import {
 import loginStyle from './loginStyle';
 import {connect} from 'react-redux';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
-import LinearGradient from 'react-native-linear-gradient';
 import {Colors, GlobalSheet} from '../../config';
 import axios from 'axios';
 import {baseUrl} from '../../config/const';
@@ -21,7 +20,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 import {WaveIndicator} from 'react-native-indicators';
 import {loggedIn} from '../../redux/actions/login';
 const logo = require('../../assets/logo.png');
-const logoColor = require('../../assets/logo_color.png');
+
 class Login extends Component {
   constructor(props) {
     super(props);
@@ -143,10 +142,7 @@ class Login extends Component {
         <View style={{flex: 1}}>
           {/************************************************************************/}
           <View style={{marginTop: this.state.position}}>
-            <Image
-              source={this.state.password === '' ? logo : logoColor}
-              style={loginStyle.titleStyle}
-            />
+            <Image source={logo} style={loginStyle.titleStyle} />
             <TextInput
               style={loginStyle.textInputStyle}
               placeholder="Example@email.com"
@@ -183,20 +179,15 @@ class Login extends Component {
             </View>
             <View style={loginStyle.loginMethods}>
               <TouchableOpacity
-                style={loginStyle.signInButton}
+                style={[
+                  loginStyle.signInButton,
+                  this.state.password === ''
+                    ? {backgroundColor: Colors.lightButtonColor}
+                    : {backgroundColor: Colors.buttonColor},
+                ]}
                 onPress={_ => this.login()}
                 disabled={this.state.password === '' ? true : false}>
-                <LinearGradient
-                  colors={
-                    this.state.password === ''
-                      ? [Colors.grey4, Colors.grey5]
-                      : [Colors.linearButton1, Colors.linearButton2]
-                  }
-                  start={{x: 0, y: 0.0}}
-                  end={{x: 1, y: 1}}
-                  style={loginStyle.gradientStyle}>
-                  <Text style={loginStyle.textInsideGradient}>Sign In</Text>
-                </LinearGradient>
+                <Text style={loginStyle.textInsideGradient}>Sign In</Text>
               </TouchableOpacity>
             </View>
             <View style={{top: '70%'}}>

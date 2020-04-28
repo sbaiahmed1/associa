@@ -1,29 +1,48 @@
 import drawerStyle from '../../views/drawer/drawerStyle';
 import {Text} from 'native-base';
 import {TouchableOpacity, StyleSheet, View} from 'react-native';
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {Colors, GlobalSheet} from '../../config';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import {DrawerItem} from '@react-navigation/drawer';
 
 function DrawerOne(props) {
+  useEffect(() => {}, []);
+
   return (
-    <TouchableOpacity
+    <DrawerItem
+      label={props.label}
       onPress={() => {
         if (props.routeName) {
           props.navigation.navigate(props.routeName);
+          // setfocus(true);
         } else {
           props.press(props);
         }
       }}
-      style={styles.ButtonStyles}>
-      <FontAwesome5
-        name={props.iconName}
-        size={2.5 * GlobalSheet.units.vh}
-        color={Colors.textColor}
-        style={{padding: 0.7 * GlobalSheet.units.vh}}
-      />
-      <Text style={styles.textInsideBtn}>{props.label}</Text>
-    </TouchableOpacity>
+      icon={() => {
+        return (
+          <FontAwesome5
+            name={props.iconName}
+            size={2.5 * GlobalSheet.units.vh}
+            color={Colors.textColor}
+            style={{padding: 0.7 * GlobalSheet.units.vh}}
+          />
+        );
+      }}
+      activeBackgroundColor={Colors.accentColor}
+      labelStyle={[
+        styles.textInsideBtn,
+        props === props.label
+          ? {
+              color: Colors.whiteTextColor,
+            }
+          : {
+              color: Colors.textColor,
+            },
+      ]}
+      // focused={focus}
+    />
   );
 }
 
@@ -35,13 +54,12 @@ const styles = StyleSheet.create({
     elevation: 0,
     paddingTop: 2 * GlobalSheet.units.vh,
     paddingLeft: 1 * GlobalSheet.units.vh,
-    backgroundColor: Colors.backgroundFirst,
     flexDirection: 'row',
   },
   textInsideBtn: {
-    color: Colors.textColor,
-    fontSize: 2.7 * GlobalSheet.units.vh,
+    fontSize: 2.5 * GlobalSheet.units.vh,
     alignContent: 'space-between',
+    paddingLeft: 1.3 * GlobalSheet.units.vh,
   },
 });
 export default DrawerOne;

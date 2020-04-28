@@ -1,6 +1,7 @@
+/* eslint-disable react-native/no-inline-styles */
 import React, {useState, useEffect} from 'react';
 import {View, Text, Icon, Header, Left, Content, Container} from 'native-base';
-import {TouchableOpacity, FlatList} from 'react-native';
+import {TouchableOpacity, FlatList, Image} from 'react-native';
 import {GlobalSheet, Colors} from '../../config';
 import {SafeAreaView} from 'react-native';
 import {connect} from 'react-redux';
@@ -9,6 +10,13 @@ import TaskContainer from '../../components/taskContainer/taskContainer';
 import TaskModal from '../../modals/taskModal/taskModal';
 import EventModal from '../../modals/eventModal/eventModal';
 import EventContainer from '../../components/eventContainer/eventContainer';
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import HeaderInTabs from '../../components/headerInTabs/headerInTabs';
+/*********************************************************** */
+const arrow = (
+  <FontAwesome5 name={'angle-right'} size={2.5 * GlobalSheet.units.vh} />
+);
+/********************************************************** */
 const undoneTasks = [
   {
     _id: '5e99e5c2eac3b9001s7df510e',
@@ -39,7 +47,7 @@ const upcomingEvents = [
   },
   {
     _id: '5e8fa3b11cc731392c7bf329',
-    name: 'hello',
+    name: 'Festival Two',
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Arcu dictum varius duis at consectetur lorem. Diam quis enim lobortis scelerisque fermentum dui faucibus in ornare. Adipiscing elit ut aliquam purus. Donec ac odio tempor orci dapibus. Maecenas ultricies mi eget mauris pharetra et ultrices neque.',
     date: '1592683855',
@@ -54,82 +62,37 @@ function MainHome(props) {
   const [eventModalContent, setEventModalContent] = useState({});
   const [taskModalVisible, setTaskModal] = useState(false);
   const [eventModalVisible, setEventModal] = useState(false);
-
-  const renderGreet = () => {
-    let current = new Date().toLocaleTimeString();
-    if (current > '18:00:00') {
-      return 'Good evening';
-    } else {
-      return 'Good Morning';
-    }
-  };
-  return (
-    <Container>
-      <Content>
-        <TouchableOpacity
+  /**************************************Upcoming Events ***********/
+  function UpcomingEventsView() {
+    return upcomingEvents.length !== 0 ? (
+      <View>
+        <View
           style={{
-            elevation: 0,
-            backgroundColor: 'transparent',
-            padding: 2 * GlobalSheet.units.vh,
-          }}
-          onPress={() => {
-            props.navigation.toggleDrawer();
+            marginLeft: 10 * GlobalSheet.units.vw,
+            marginRight: 10 * GlobalSheet.units.vw,
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            marginTop: 1 * GlobalSheet.units.vh,
+            marginBottom: 1 * GlobalSheet.units.vh,
           }}>
-          <Icon type={'FontAwesome5'} name="bars" />
-        </TouchableOpacity>
-        <Text
-          style={{fontSize: 2 * GlobalSheet.units.vh, alignSelf: 'flex-end'}}>
-          {renderGreet()}
-          {'\t'}
           <Text
             style={{
-              fontSize: 2 * GlobalSheet.units.vh,
-              fontWeight: 'bold',
-              color: Colors.grey1,
+              fontSize: 2.5 * GlobalSheet.units.vh,
+              fontFamily: 'Montserrat-Bold',
             }}>
-            {'@' + props.isLogged.userName}
+            Upcoming Events
           </Text>
-        </Text>
-        <TaskModal
-          isVisible={taskModalVisible}
-          press={setTaskModal}
-          content={taskModalContent}
-        />
-        <Text
-          style={{
-            marginLeft: 5 * GlobalSheet.units.vw,
-            fontSize: 2.5 * GlobalSheet.units.vh,
-          }}>
-          Upcoming Tasks
-        </Text>
-        <FlatList
-          data={undoneTasks}
-          renderItem={({item}) => (
-            <TaskContainer
-              id={item._id}
-              title={item.title}
-              checked={item.checked}
-              press={() => {
-                setTaskModalContent({
-                  _id: item._id,
-                  title: item.title,
-                  checked: item.checked,
-                });
-                setTaskModal(true);
-              }}
-            />
-          )}
-          keyExtractor={item => item._id}
-          // ItemSeparatorComponent={renderSeparator}
-          // ListEmptyComponent={EmptyList}
-        />
-        <Text
-          style={{
-            marginLeft: 5 * GlobalSheet.units.vw,
-            fontSize: 2.5 * GlobalSheet.units.vh,
-          }}>
-          Upcoming Events
-        </Text>
+          <TouchableOpacity style={{flexDirection: 'row'}}>
+            <Text
+              style={{
+                fontSize: 2 * GlobalSheet.units.vh,
+                fontFamily: 'Montserrat-Regular',
+              }}>
+              All Events
+            </Text>
+            <Text>{arrow}</Text>
+          </TouchableOpacity>
+        </View>
         <EventModal
           isVisible={eventModalVisible}
           press={setEventModal}
@@ -160,6 +123,54 @@ function MainHome(props) {
           // ItemSeparatorComponent={renderSeparator}
           // ListEmptyComponent={EmptyList}
         />
+      </View>
+    ) : (
+      <View />
+    );
+  }
+  /*******************upcoming Events */
+  /********************************undone tasks view */
+  function undoneTasksView() {}
+  /***********************************undone tasks */
+  return (
+    <Container style={{backgroundColor: Colors.backgroundSecond}}>
+      <Content>
+        <HeaderInTabs {...props} />
+        <TaskModal
+          isVisible={taskModalVisible}
+          press={setTaskModal}
+          content={taskModalContent}
+        />
+        <Text
+          style={{
+            marginLeft: 10 * GlobalSheet.units.vw,
+            fontSize: 2.5 * GlobalSheet.units.vh,
+            fontFamily: 'Montserrat-Bold',
+          }}>
+          Upcoming Tasks
+        </Text>
+        <FlatList
+          data={undoneTasks}
+          renderItem={({item}) => (
+            <TaskContainer
+              id={item._id}
+              title={item.title}
+              checked={item.checked}
+              press={() => {
+                setTaskModalContent({
+                  _id: item._id,
+                  title: item.title,
+                  checked: item.checked,
+                });
+                setTaskModal(true);
+              }}
+            />
+          )}
+          keyExtractor={item => item._id}
+          // ItemSeparatorComponent={renderSeparator}
+          // ListEmptyComponent={EmptyList}
+        />
+        {<UpcomingEventsView />}
       </Content>
     </Container>
   );

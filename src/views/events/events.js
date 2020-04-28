@@ -8,6 +8,7 @@ import {FlatList} from 'react-native-gesture-handler';
 import EventContainer from '../../components/eventContainer/eventContainer';
 import EventModal from '../../modals/eventModal/eventModal';
 import TaskModal from '../../modals/taskModal/taskModal';
+import HeaderInTabs from '../../components/headerInTabs/headerInTabs';
 const DATA = [
   {
     _id: '5e8bb2f998571c7a788c62d2',
@@ -57,7 +58,12 @@ function Events(props) {
   };
   useEffect(() => {
     separateDataByStamp();
-  }, []);
+    // console.log(props.route.name);
+    return () => {
+      console.log(props.navigation.dangerouslyGetParent().isFocused());
+      console.log('unmounting');
+    };
+  });
   function handleUpdate() {
     //passing empty object will re-render the component
     setState({});
@@ -70,16 +76,7 @@ function Events(props) {
             separateDataByStamp();
             handleUpdate();
           }}>
-          <TouchableOpacity
-            // eslint-disable-next-line react-native/no-inline-styles
-            style={{
-              elevation: 0,
-              backgroundColor: 'transparent',
-              padding: 2 * GlobalSheet.units.vh,
-            }}
-            onPress={() => props.navigation.toggleDrawer()}>
-            <Icon type={'FontAwesome5'} name="bars" size={25} />
-          </TouchableOpacity>
+          <HeaderInTabs {...props} />
           <Text
             style={{
               marginLeft: 5 * GlobalSheet.units.vw,

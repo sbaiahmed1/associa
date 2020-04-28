@@ -2,6 +2,7 @@ import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import MembershipStatus from '../membershipStatus/membershipStatus';
+import Payment from '../payment/payment';
 
 const Stack = createStackNavigator();
 function MembershipContainer() {
@@ -13,6 +14,11 @@ function MembershipContainer() {
         options={{
           headerShown: false,
         }}
+      />
+      <Stack.Screen
+        name={'paymentChoosingPage'}
+        component={Payment}
+        options={{title: 'Choose a payment method'}}
       />
     </Stack.Navigator>
   );

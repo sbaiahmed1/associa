@@ -21,36 +21,23 @@ let loginStyle = StyleSheet.create({
   loginMethods: {
     flex: 1,
     flexDirection: 'row',
-    top: 20 * GlobalSheet.units.vh,
+    top: 18 * GlobalSheet.units.vh,
     alignSelf: 'center',
-  },
-  facebook: {
-    borderRadius: 50,
-    borderColor: Colors.textColor,
-    borderWidth: 1,
-    padding: 1 * GlobalSheet.units.vw,
-    height: 7 * GlobalSheet.units.vh,
-    width: 7 * GlobalSheet.units.vh,
-    margin: 1.5 * GlobalSheet.units.vh,
-  },
-  textFacebook: {
-    textAlign: 'center',
-    justifyContent: 'center',
-    padding: 2 * GlobalSheet.units.vw,
   },
   signInButton: {
     top: 1 * GlobalSheet.units.vh,
     width: (50 * GlobalSheet.width) / 100,
     height: 7 * GlobalSheet.units.vh,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 6,
   },
   gradientStyle: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 32,
   },
   textInsideGradient: {
     color: 'white',
+    opacity: 1,
   },
 });
 
