@@ -14,7 +14,11 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import HeaderInTabs from '../../components/headerInTabs/headerInTabs';
 /*********************************************************** */
 const arrow = (
-  <FontAwesome5 name={'angle-right'} size={2.5 * GlobalSheet.units.vh} />
+  <FontAwesome5
+    color={Colors.secondaryTextColor}
+    name={'angle-right'}
+    size={2.5 * GlobalSheet.units.vh}
+  />
 );
 /********************************************************** */
 const undoneTasks = [
@@ -82,15 +86,19 @@ function MainHome(props) {
             }}>
             Upcoming Events
           </Text>
-          <TouchableOpacity style={{flexDirection: 'row'}}>
+          <TouchableOpacity
+            onPress={() => {
+              props.navigation.navigate('events');
+            }}
+            style={{flexDirection: 'row'}}>
             <Text
               style={{
-                fontSize: 2 * GlobalSheet.units.vh,
-                fontFamily: 'Montserrat-Regular',
+                fontSize: 2.5 * GlobalSheet.units.vh,
+                fontFamily: 'Montserrat-ExtraLight',
               }}>
               All Events
             </Text>
-            <Text>{arrow}</Text>
+            <Text style={{padding: 0.5 * GlobalSheet.units.vh}}>{arrow}</Text>
           </TouchableOpacity>
         </View>
         <EventModal
@@ -161,6 +169,7 @@ function MainHome(props) {
                   _id: item._id,
                   title: item.title,
                   checked: item.checked,
+                  content: item.content,
                 });
                 setTaskModal(true);
               }}

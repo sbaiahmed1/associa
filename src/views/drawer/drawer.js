@@ -59,7 +59,7 @@ function DrawerContent(props) {
         <View>
           <UserInfo
             onPress={() => props.navigation.navigate('profile')}
-            avatar={props.avatar.imageUri}
+            avatar={props.isLogged.imageName}
             name={props.isLogged.name}
             lastName={props.isLogged.lastName}
             username={props.isLogged.userName}
@@ -74,9 +74,6 @@ function DrawerContent(props) {
                 label={singleRoute.label}
                 routeName={singleRoute.routeName}
                 iconName={singleRoute.iconName}
-                focused={({focused}) => {
-                  return focused;
-                }}
               />
             );
           })}
@@ -94,26 +91,6 @@ function DrawerContent(props) {
             );
           })}
         </View>
-        <View style={drawerStyle.separator} />
-        <View>
-          {options.paymentAndStuff.map(singleRoute => {
-            return (
-              <DrawerOne
-                {...props}
-                label={singleRoute.label}
-                routeName={singleRoute.routeName}
-                iconName={singleRoute.iconName}
-              />
-            );
-          })}
-        </View>
-        <View style={drawerStyle.separator} />
-        <DrawerOne
-          {...props}
-          press={removeToken}
-          iconName={'sign-out-alt'}
-          label={'Logout'}
-        />
         <View style={drawerStyle.separator} />
         <DrawerOne
           {...props}
@@ -173,6 +150,7 @@ class Drawer extends Component {
     this.getData();
   }
   render() {
+    console.log(this.props);
     return (
       <DrawerNav.Navigator
         // eslint-disable-next-line react-native/no-inline-styles

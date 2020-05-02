@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   name: {
-    fontFamily: 'Montserrat-Bold',
+    fontFamily: 'Montserrat-Regular',
     fontSize: fontSize * GlobalSheet.units.vh,
     padding: 1 * GlobalSheet.units.vh,
   },

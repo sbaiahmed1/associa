@@ -5,9 +5,10 @@ import {
   Text,
   TouchableOpacity,
   AsyncStorage,
+  ScrollView,
 } from 'react-native';
 import {Container, Content} from 'native-base';
-import {GlobalSheet} from '../../config';
+import {GlobalSheet, Colors} from '../../config';
 import Modal from 'react-native-modal';
 import axios from 'axios';
 import {baseUrl} from '../../config/const';
@@ -16,17 +17,12 @@ function TaskModal(props) {
   let token = AsyncStorage.getItem('@token');
   let content = props.content;
   const updateTaskStatus = () => {
-    let url = baseUrl + 'task';
     var myHeaders = new Headers();
     myHeaders.append('Content-Type', 'application/json');
 
     var body = {
       checked: content.checked ? 'false' : 'true',
       taskId: content._id,
-    };
-    var requestOptions = {
-      // headers: myHeaders,
-      body: body,
     };
     axios
       .put('https://nodebackend-pfe.herokuapp.com/task/', body)
@@ -45,71 +41,66 @@ function TaskModal(props) {
         props.press(false);
         props.dismiss;
       }}>
-      <Container style={styles.modalView}>
-        <Content>
-          <Text style={styles.modalTitle}>{'' || content.title}</Text>
-          <Text style={styles.textStyle}>{'' || content.content}</Text>
-          <View
+      <View style={styles.modalView}>
+        <Text style={styles.modalTitle}>{'' || content.title}</Text>
+        <Text style={styles.textStyle}>{'' || content.content}</Text>
+        <View
+          // eslint-disable-next-line react-native/no-inline-styles
+          style={{
+            flex: 1,
+            flexDirection: 'row',
+            width: '100%',
+            justifyContent: 'space-evenly',
+            position: 'absolute',
+            bottom: 3 * GlobalSheet.units.vh,
+          }}>
+          <TouchableOpacity
             // eslint-disable-next-line react-native/no-inline-styles
             style={{
-              flex: 1,
-              flexDirection: 'row',
-              width: '100%',
-              justifyContent: 'space-evenly',
+              backgroundColor: Colors.buttonColor,
+              width: '40%',
+              borderRadius: 6,
+              height: 6 * GlobalSheet.units.vh,
+              elevation: 5,
+              padding: 1.5 * GlobalSheet.units.vh,
+              margin: 1 * GlobalSheet.units.vh,
+            }}
+            onPress={() => {
+              props.press(false);
+              props.dismiss;
             }}>
-            <TouchableOpacity
-              // eslint-disable-next-line react-native/no-inline-styles
-              style={{
-                backgroundColor: 'white',
-                flexDirection: 'row',
-                width: '40%',
-                borderRadius: 32,
-                height: 6 * GlobalSheet.units.vh,
-                elevation: 5,
-                padding: 1.5 * GlobalSheet.units.vh,
-                margin: 1 * GlobalSheet.units.vh,
-              }}
-              onPress={() => {
-                props.press(false);
-                props.dismiss;
-              }}>
-              <Text>Close</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              // eslint-disable-next-line react-native/no-inline-styles
-              style={{
-                backgroundColor: 'white',
-                flexDirection: 'row',
-                width: '50%',
-                borderRadius: 32,
-                height: 6 * GlobalSheet.units.vh,
-                elevation: 5,
-                padding: 1.5 * GlobalSheet.units.vh,
-                margin: 1 * GlobalSheet.units.vh,
-              }}
-              onPress={() => updateTaskStatus()}>
-              <Text>Mark as {content.checked ? 'undone' : 'done'}</Text>
-            </TouchableOpacity>
-          </View>
-        </Content>
-      </Container>
+            <Text style={styles.textInsideButton}>Close</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            // eslint-disable-next-line react-native/no-inline-styles
+            style={{
+              backgroundColor: Colors.buttonColor,
+              width: '50%',
+              borderRadius: 6,
+              height: 6 * GlobalSheet.units.vh,
+              elevation: 5,
+              padding: 1.5 * GlobalSheet.units.vh,
+              margin: 1 * GlobalSheet.units.vh,
+            }}
+            onPress={() => updateTaskStatus()}>
+            <Text style={styles.textInsideButton}>
+              Mark as {content.checked ? 'undone' : 'done'}
+            </Text>
+          </TouchableOpacity>
+        </View>
+      </View>
     </Modal>
   );
 }
 
 const styles = StyleSheet.create({
-  centeredView: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: 22,
-  },
   modalView: {
-    backgroundColor: 'white',
-    borderRadius: 32,
-    padding: 5 * GlobalSheet.units.vh,
+    alignSelf: 'center',
     alignItems: 'center',
-    shadowColor: '#000',
+    justifyContent: 'center',
+    backgroundColor: Colors.whiteTextColor,
+    borderRadius: 6,
+    padding: 3 * GlobalSheet.units.vh,
     shadowOffset: {
       width: 0,
       height: 2,
@@ -117,19 +108,23 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
     elevation: 5,
-    width: 78 * GlobalSheet.units.vw,
-    alignSelf: 'center',
-    top: '10%',
-    marginBottom: '50%',
+    width: 80 * GlobalSheet.units.vw,
+    height: '50%',
   },
   textStyle: {
     textAlign: 'center',
     fontSize: 2.5 * GlobalSheet.units.vh,
+    fontFamily: 'Montserrat-Regular',
   },
   modalTitle: {
-    fontWeight: 'bold',
+    top: -10 * GlobalSheet.units.vh,
     textAlign: 'center',
-    fontSize: 4 * GlobalSheet.units.vh,
+    fontSize: 2.5 * GlobalSheet.units.vh,
+    fontFamily: 'Montserrat-Bold',
+  },
+  textInsideButton: {
+    color: Colors.whiteTextColor,
+    textAlign: 'center',
   },
 });
 export default TaskModal;

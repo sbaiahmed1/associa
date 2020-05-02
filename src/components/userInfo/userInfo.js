@@ -3,14 +3,17 @@ import {TouchableOpacity, ImageBackground} from 'react-native';
 import {Container, Text} from 'native-base';
 import {Colors, GlobalSheet} from '../../config';
 import {Avatar} from 'react-native-paper';
+const avatar = require('../../assets/avatar.png');
 
 function UserInfo(props) {
   return (
-    <TouchableOpacity onPress={props.onPress}>
+    <TouchableOpacity
+      style={{height: 20 * GlobalSheet.units.vh}}
+      onPress={props.onPress}>
       <ImageBackground
         // eslint-disable-next-line react-native/no-inline-styles
-        style={{height: 20 * GlobalSheet.units.vh}}
-        source={{uri: props.avatar}}>
+        style={{height: '100%'}}
+        source={{uri: 'data:image/jpeg;base64,' + props.avatar}}>
         <Text
           style={{
             color: Colors.whiteTextColor,

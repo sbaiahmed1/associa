@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import React, {useState, useEffect} from 'react';
 import {View, Text} from 'react-native';
 import {RadioButton, ProgressBar} from 'react-native-paper';
@@ -13,11 +14,26 @@ function PollContainer(props) {
       console.log('to' + to);
       settotalVotes(to);
     }
-    console.log(totalVotes);
   }, [checked]);
   return (
-    <View>
-      <Text>{props.question}</Text>
+    <View
+      style={{
+        borderRadius: 6,
+        elevation: 5,
+        width: 80 * GlobalSheet.units.vw,
+        alignSelf: 'center',
+        margin: 1 * GlobalSheet.units.vh,
+        padding: 1 * GlobalSheet.units.vh,
+      }}>
+      <Text
+        style={{
+          fontFamily: 'Montserrat-Regular',
+          alignSelf: 'center',
+          fontSize: 2 * GlobalSheet.units.vh,
+          padding: 1 * GlobalSheet.units.vh,
+        }}>
+        {props.question}
+      </Text>
       {answers &&
         answers.map(answer => {
           return (
@@ -25,7 +41,7 @@ function PollContainer(props) {
               style={{
                 flexDirection: 'row',
               }}>
-              <Text style={{padding: 1 * GlobalSheet.units.vh}}>
+              <Text style={{padding: 0.5 * GlobalSheet.units.vh}}>
                 {answer.option}
               </Text>
               <RadioButton
@@ -34,7 +50,7 @@ function PollContainer(props) {
                 onPress={() => setchecked(answer.option)}
                 color={Colors.accentColor}
               />
-              <View style={{padding: 2.5 * GlobalSheet.units.vh, width: '50%'}}>
+              <View style={{padding: 1 * GlobalSheet.units.vh, width: '50%'}}>
                 <ProgressBar
                   style={{height: 1 * GlobalSheet.units.vh}}
                   progress={answer.votes / totalVotes}

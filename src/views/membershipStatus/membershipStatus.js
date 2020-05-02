@@ -82,6 +82,8 @@ class MembershipStatus extends Component {
               alignItems: 'center',
               alignSelf: 'center',
               marginTop: 15 * GlobalSheet.units.vh,
+              elevation: 5,
+              borderRadius: 6,
             }}>
             <CardItem>
               <Icon name={'university'} type={'FontAwesome5'} />
@@ -92,7 +94,10 @@ class MembershipStatus extends Component {
               </Text>
             </CardItem>
             <CardItem>
-              <Text>You have an amount of {500}$ due to the period</Text>
+              <Text>You have an amount of due to the period</Text>
+            </CardItem>
+            <CardItem>
+              <Text style={{fontFamily: 'Montserrat-Light'}}>{500}$</Text>
             </CardItem>
             <CardItem footer>
               <Text>
@@ -104,10 +109,9 @@ class MembershipStatus extends Component {
             style={{
               alignSelf: 'center',
               height: 8 * GlobalSheet.units.vh,
-              elevation: 5,
               padding: 2.5 * GlobalSheet.units.vh,
-              backgroundColor: Colors.backgroundFirst,
-              borderRadius: 32,
+              backgroundColor: Colors.buttonColor,
+              borderRadius: 6,
               width: '50%',
               margin: 2 * GlobalSheet.units.vh,
               alignItems: 'center',
@@ -115,7 +119,7 @@ class MembershipStatus extends Component {
             onPress={() =>
               this.props.navigation.navigate('paymentChoosingPage')
             }>
-            <Text>Pay Now</Text>
+            <Text style={{color: Colors.whiteTextColor}}>Pay Now</Text>
           </TouchableOpacity>
         </Content>
       </Container>

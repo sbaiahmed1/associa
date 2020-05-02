@@ -7,7 +7,9 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import {DrawerItem} from '@react-navigation/drawer';
 
 function DrawerOne(props) {
-  useEffect(() => {}, []);
+  useEffect(() => {
+    // console.log(props);
+  }, []);
 
   return (
     <DrawerItem
@@ -57,9 +59,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   textInsideBtn: {
-    fontSize: 2.5 * GlobalSheet.units.vh,
+    fontSize: 2.2 * GlobalSheet.units.vh,
     alignContent: 'space-between',
-    paddingLeft: 1.3 * GlobalSheet.units.vh,
+    paddingLeft: 0.5 * GlobalSheet.units.vh,
+    fontFamily: 'Montserrat-Light',
   },
 });
 export default DrawerOne;

@@ -2,12 +2,10 @@ import React, {Component} from 'react';
 import AsyncStorage from '@react-native-community/async-storage';
 import {createStackNavigator} from '@react-navigation/stack';
 import {NavigationContainer} from '@react-navigation/native';
-import {Login} from '..';
 import {Drawer} from '../drawer';
 import {Root} from 'native-base';
 import StackContainer from '../stackContainer/stackContainer';
 import PushController from '../../config/notificationHandler';
-import MembershipContainer from '../membershipContainer/memberShipContainer';
 
 const Stack = createStackNavigator();
 class RootNavigator extends Component {

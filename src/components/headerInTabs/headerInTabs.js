@@ -15,7 +15,13 @@ function HeaderInTabs(props) {
       onPress={() => {
         props.navigation.toggleDrawer();
       }}>
-      <Icon type={'FontAwesome5'} name="bars" />
+      <Icon
+        style={
+          props.route.name === 'profile' ? {color: '#ffffff'} : {color: '#000'}
+        }
+        type={'FontAwesome5'}
+        name="bars"
+      />
       <Image
         source={logoWithoutText}
         style={{

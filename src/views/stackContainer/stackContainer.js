@@ -5,6 +5,7 @@ import {createStackNavigator} from '@react-navigation/stack'; // stackNavigator 
 import {Login} from '../login';
 import {ForgotLogin} from '../forgotLogin';
 import {Drawer} from '../drawer';
+import {GlobalSheet} from '../../config';
 
 const Stack = createStackNavigator();
 
@@ -25,9 +26,7 @@ class StackContainer extends Component {
               elevation: 0,
               backgroundColor: 'transparent',
             },
-            headerTitleStyle: {
-              left: '50%',
-            },
+            title: 'Can’t Log In?',
           }}
         />
         <Stack.Screen

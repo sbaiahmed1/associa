@@ -32,6 +32,7 @@ class Login extends Component {
       isLoading: false,
       passwordHidden: true,
       data: {
+        id: '',
         name: '',
         last: '',
         username: '',
@@ -69,6 +70,7 @@ class Login extends Component {
         this.setState({
           token: response.data.token,
           data: {
+            id: response.data.userData.id,
             name: response.data.userData.name,
             lastName: response.data.userData.lastName,
             type: response.data.userData.type,
@@ -78,7 +80,7 @@ class Login extends Component {
             userName: response.data.userData.username,
           },
         });
-        console.log(response.data);
+        console.log(this.state.data);
       })
       .then(() => {
         // store.dispatch(loggedIn(this.state.data));

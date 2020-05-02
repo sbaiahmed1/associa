@@ -8,7 +8,7 @@ function TaskContainer(props) {
     <TouchableOpacity style={styles.container} onPress={props.press}>
       <Text
         style={{
-          fontFamily: 'Montserrat-Bold',
+          fontFamily: 'Montserrat-Regular',
           fontSize: 2.5 * GlobalSheet.units.vh,
         }}>
         {props.title}
