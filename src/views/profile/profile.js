@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Thumbnail, Container, Content, H1, H3, View} from 'native-base';
+import {Thumbnail, Container, Content, H1, H3, View, Toast} from 'native-base';
 import profileStyle from './profileStyle';
 import {Colors, GlobalSheet} from '../../config';
 import LinearGradient from 'react-native-linear-gradient';
@@ -99,10 +99,31 @@ class Profile extends Component {
       .then(response => response)
       .then(result => {
         console.log(result);
-        this.props.login(result.data);
+        this.props.login({
+          email: result.data.email,
+          imageName: result.data.imageName,
+          lastName: result.data.lastName,
+          name: result.data.name,
+          role: result.data.role,
+          type: result.data.type,
+          username: result.data.username,
+          id: result.data._id,
+        });
       })
-      .then(() => console.log(this.state))
-      .catch(error => console.log('error', error));
+      .catch(error => {
+        if (error.response.status === 413) {
+          Toast.show({
+            text: 'File too big, Choose another one please',
+            style: {backgroundColor: Colors.accentColor, alignSelf: 'center'},
+          });
+        } else {
+          Toast.show({
+            type: 'danger',
+            text: 'File too big, Choose another one please',
+            textStyle: {alignSelf: 'center'},
+          });
+        }
+      });
   };
 
   /**************************************************************** */
@@ -135,22 +156,22 @@ class Profile extends Component {
           </ImageBackground>
           <View style={profileStyle.buttonsContainer}>
             <TouchableOpacity
-              onPress={() => this.props.navigation.navigate('tasks')}
+              onPress={() => this.props.navigation.navigate('pastEvents')}
               style={profileStyle.ButtonStyles}>
               <Text style={profileStyle.textInsideBtn}>Past Events</Text>
             </TouchableOpacity>
             <TouchableOpacity
-              onPress={() => this.props.navigation.navigate('tasks')}
+              onPress={() => this.props.navigation.navigate('pastPolls')}
               style={profileStyle.ButtonStyles}>
               <Text style={profileStyle.textInsideBtn}>Past Polls</Text>
             </TouchableOpacity>
             <TouchableOpacity
-              onPress={() => this.props.navigation.navigate('tasks')}
+              onPress={() => this.props.navigation.navigate('pastTasks')}
               style={profileStyle.ButtonStyles}>
               <Text style={profileStyle.textInsideBtn}>Past Tasks</Text>
             </TouchableOpacity>
             <TouchableOpacity
-              onPress={() => this.props.navigation.navigate('tasks')}
+              onPress={() => this.props.navigation.navigate('settings')}
               style={profileStyle.ButtonStyles}>
               <Text style={profileStyle.textInsideBtn}>Settings</Text>
             </TouchableOpacity>

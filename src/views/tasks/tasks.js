@@ -102,8 +102,9 @@ function Tasks(props) {
           <HeaderInTabs {...props} />
           <Text
             style={{
-              marginLeft: 5 * GlobalSheet.units.vw,
+              marginLeft: 10 * GlobalSheet.units.vw,
               fontSize: 2.5 * GlobalSheet.units.vh,
+              fontFamily: 'Montserrat-Bold',
             }}>
             Upcoming Tasks
           </Text>
@@ -130,8 +131,9 @@ function Tasks(props) {
           />
           <Text
             style={{
-              marginLeft: 5 * GlobalSheet.units.vw,
+              marginLeft: 10 * GlobalSheet.units.vw,
               fontSize: 2.5 * GlobalSheet.units.vh,
+              fontFamily: 'Montserrat-Bold',
             }}>
             Done Tasks
           </Text>

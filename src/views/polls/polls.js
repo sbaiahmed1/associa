@@ -5,7 +5,9 @@ import PollContainer from '../../components/pollContainer/pollContainer';
 import HeaderInTabs from '../../components/headerInTabs/headerInTabs';
 import {StyleSheet} from 'react-native';
 import {GlobalSheet} from '../../config';
-const pollQuestion = 'Is react-polls useful?';
+import PastEvents from '../pastEvents/pastEvents';
+import PastTasks from '../pastTasks/pastTasks';
+const pollQuestion = 'kiki do you love me ?';
 const pollAnswers = [
   {option: 'Yes', votes: 8},
   {option: 'No', votes: 2},
@@ -21,8 +23,16 @@ function Polls(props) {
         <PollContainer question={pollQuestion} pollAnswers={pollAnswers} />
         <PollContainer question={pollQuestion} pollAnswers={pollAnswers} />
         <Text style={styles.title}>Voted Polls</Text>
-        <PollContainer question={pollQuestion} pollAnswers={pollAnswers} />
-        <PollContainer question={pollQuestion} pollAnswers={pollAnswers} />
+        <PollContainer
+          disabled={true}
+          question={pollQuestion}
+          pollAnswers={pollAnswers}
+        />
+        <PollContainer
+          disabled={true}
+          question={pollQuestion}
+          pollAnswers={pollAnswers}
+        />
       </Content>
     </Container>
   );

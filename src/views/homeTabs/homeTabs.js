@@ -8,6 +8,7 @@ import {Profile, Tasks, Polls, Events} from '../../views';
 import AddActivity from '../addActivity/addActivity';
 import PushController from '../../config/notificationHandler';
 import {Root} from 'native-base';
+import ProfileRoutes from '../profileRoutes/profileRoutes';
 
 const Tabs = createBottomTabNavigator();
 class HomeTabs extends Component {
@@ -23,7 +24,7 @@ class HomeTabs extends Component {
 
               switch (route.name) {
                 case 'profile':
-                  iconName = focused ? 'user' : 'user';
+                  iconName = focused ? 'user-alt' : 'user-alt';
                   break;
                 case 'polls':
                   iconName = focused ? 'poll' : 'poll';
@@ -51,7 +52,7 @@ class HomeTabs extends Component {
           <Tabs.Screen name="tasks" component={Tasks} />
           <Tabs.Screen name="mainHome" component={AddActivity} />
           <Tabs.Screen name="polls" component={Polls} />
-          <Tabs.Screen name="profile" component={Profile} />
+          <Tabs.Screen name="profile" component={ProfileRoutes} />
         </Tabs.Navigator>
       </Root>
     );

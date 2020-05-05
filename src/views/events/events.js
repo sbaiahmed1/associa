@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import React, {useState, useEffect} from 'react';
 import {View, Text, Icon, Header, Left, Content, Container} from 'native-base';
 import {TouchableOpacity} from 'react-native';
@@ -79,8 +80,11 @@ function Events(props) {
           <HeaderInTabs {...props} />
           <Text
             style={{
-              marginLeft: 5 * GlobalSheet.units.vw,
+              marginLeft: 10 * GlobalSheet.units.vw,
               fontSize: 2.5 * GlobalSheet.units.vh,
+              fontFamily: 'Montserrat-Bold',
+              paddingTop: 1 * GlobalSheet.units.vh,
+              paddingBottom: 1 * GlobalSheet.units.vh,
             }}>
             Upcoming Events
           </Text>
@@ -117,8 +121,11 @@ function Events(props) {
           />
           <Text
             style={{
-              marginLeft: 5 * GlobalSheet.units.vw,
+              marginLeft: 10 * GlobalSheet.units.vw,
               fontSize: 2.5 * GlobalSheet.units.vh,
+              fontFamily: 'Montserrat-Bold',
+              paddingTop: 1 * GlobalSheet.units.vh,
+              paddingBottom: 1 * GlobalSheet.units.vh,
             }}>
             Past Events
           </Text>

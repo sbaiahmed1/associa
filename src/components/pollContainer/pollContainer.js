@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, {useState, useEffect} from 'react';
-import {View, Text} from 'react-native';
+import {View, Text, TouchableOpacity} from 'react-native';
 import {RadioButton, ProgressBar} from 'react-native-paper';
 import {GlobalSheet, Colors} from '../../config';
 
@@ -24,6 +24,7 @@ function PollContainer(props) {
         alignSelf: 'center',
         margin: 1 * GlobalSheet.units.vh,
         padding: 1 * GlobalSheet.units.vh,
+        alignItems: 'center',
       }}>
       <Text
         style={{
@@ -41,7 +42,7 @@ function PollContainer(props) {
               style={{
                 flexDirection: 'row',
               }}>
-              <Text style={{padding: 0.5 * GlobalSheet.units.vh}}>
+              <Text style={{padding: 1 * GlobalSheet.units.vh}}>
                 {answer.option}
               </Text>
               <RadioButton
@@ -52,7 +53,10 @@ function PollContainer(props) {
               />
               <View style={{padding: 1 * GlobalSheet.units.vh, width: '50%'}}>
                 <ProgressBar
-                  style={{height: 1 * GlobalSheet.units.vh}}
+                  style={{
+                    height: 1 * GlobalSheet.units.vh,
+                    margin: 0.5 * GlobalSheet.units.vh,
+                  }}
                   progress={answer.votes / totalVotes}
                   color={Colors.accentColor}
                 />
@@ -60,6 +64,19 @@ function PollContainer(props) {
             </View>
           );
         })}
+      <TouchableOpacity
+        style={{
+          alignSelf: 'center',
+          alignItems: 'center',
+          backgroundColor: props.disabled
+            ? Colors.lightButtonColor
+            : Colors.buttonColor,
+          padding: 1 * GlobalSheet.units.vh,
+          borderRadius: 6,
+        }}
+        disabled={props.disabled}>
+        <Text style={{color: Colors.whiteTextColor}}>Submit</Text>
+      </TouchableOpacity>
     </View>
   );
 }

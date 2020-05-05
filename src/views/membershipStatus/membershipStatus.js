@@ -13,7 +13,7 @@ import {
   Left,
   Icon,
 } from 'native-base';
-import {TouchableOpacity} from 'react-native';
+import {TouchableOpacity, TouchableNativeFeedback} from 'react-native';
 import {GlobalSheet, Colors} from '../../config';
 import {compose} from 'redux';
 import {connect} from 'react-redux';
@@ -25,6 +25,7 @@ class MembershipStatus extends Component {
   state = {
     currentMonth: '',
     nextOne: '',
+    year: '',
   };
   getMonth = () => {
     const monthNames = [
@@ -43,9 +44,11 @@ class MembershipStatus extends Component {
     ];
     var current = new Date();
     let month = current.getMonth();
+    let year = current.getFullYear();
     this.setState({
       currentMonth: monthNames[month],
       nextOne: monthNames[month + 1],
+      year: year,
     });
   };
   componentDidMount() {
@@ -70,41 +73,61 @@ class MembershipStatus extends Component {
             <Text
               style={{
                 alignSelf: 'center',
-                marginRight: 'auto',
                 fontSize: 2.5 * GlobalSheet.units.vh,
               }}>
               Payment
             </Text>
           </View>
-          <Card
+          <View
             style={{
               width: '90%',
-              alignItems: 'center',
               alignSelf: 'center',
               marginTop: 15 * GlobalSheet.units.vh,
               elevation: 5,
               borderRadius: 6,
+              padding: 4 * GlobalSheet.units.vh,
+              height: '40%',
             }}>
-            <CardItem>
-              <Icon name={'university'} type={'FontAwesome5'} />
-            </CardItem>
-            <CardItem>
-              <Text>
-                Hello {this.props.isLogged.name} {this.props.isLogged.lastName}
+            <Text
+              style={{
+                fontFamily: 'Montserrat-Bold',
+                alignSelf: 'flex-start',
+                fontSize: 3 * GlobalSheet.units.vh,
+              }}>
+              You have an amount of
+            </Text>
+            <Text
+              style={{
+                fontFamily: 'Montserrat-Light',
+                color: Colors.secondaryTextColor,
+                fontSize: 5 * GlobalSheet.units.vh,
+              }}>
+              {9.99}$
+            </Text>
+            <View
+              style={{
+                position: 'absolute',
+                bottom: 1 * GlobalSheet.units.vh,
+                left: 7 * GlobalSheet.units.vw,
+              }}>
+              <Text
+                style={{
+                  fontFamily: 'Montserrat-Regular',
+                  fontSize: 2.5 * GlobalSheet.units.vh,
+                }}>
+                Due on {this.state.nextOne} {5}, {this.state.year}
               </Text>
-            </CardItem>
-            <CardItem>
-              <Text>You have an amount of due to the period</Text>
-            </CardItem>
-            <CardItem>
-              <Text style={{fontFamily: 'Montserrat-Light'}}>{500}$</Text>
-            </CardItem>
-            <CardItem footer>
-              <Text>
-                from {this.state.currentMonth} to {this.state.nextOne}
+              <Text
+                style={{
+                  fontFamily: 'Montserrat-SemiBold',
+                  fontSize: 1.5 * GlobalSheet.units.vh,
+                  color: Colors.secondaryTextColor,
+                }}>
+                Billing period : 5 {this.state.currentMonth} , 5{' '}
+                {this.state.nextOne}
               </Text>
-            </CardItem>
-          </Card>
+            </View>
+          </View>
           <TouchableOpacity
             style={{
               alignSelf: 'center',
@@ -112,9 +135,12 @@ class MembershipStatus extends Component {
               padding: 2.5 * GlobalSheet.units.vh,
               backgroundColor: Colors.buttonColor,
               borderRadius: 6,
-              width: '50%',
+              width: '90%',
               margin: 2 * GlobalSheet.units.vh,
               alignItems: 'center',
+              position: 'relative',
+              bottom: -9 * GlobalSheet.units.vh,
+              marginBottom: 20 * GlobalSheet.units.vh,
             }}
             onPress={() =>
               this.props.navigation.navigate('paymentChoosingPage')

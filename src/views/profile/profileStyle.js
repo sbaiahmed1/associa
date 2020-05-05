@@ -4,7 +4,7 @@ import {Colors, GlobalSheet} from '../../config';
 const profileStyle = StyleSheet.create({
   thumbnail: {
     alignSelf: 'center',
-    height: 60 * GlobalSheet.units.vh,
+    height: 59* GlobalSheet.units.vh,
     width: '100%',
     // borderRadius: 100,
     resizeMode: 'cover',
