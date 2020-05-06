@@ -39,18 +39,6 @@ function EventContainer(props) {
         <Text style={styles.description} numberOfLines={3}>
           {data.description}
         </Text>
-        <View style={styles.rowItems}>
-          <Text style={styles.location}>
-            {locationIcon}
-            {'\t '}
-            {data.location}
-          </Text>
-          <Text style={styles.date}>
-            {calendarIcon}
-            {'\t '}
-            {getDate(data.date)}
-          </Text>
-        </View>
       </View>
     </TouchableOpacity>
   );
@@ -94,6 +82,7 @@ const styles = StyleSheet.create({
   },
   description: {
     fontFamily: 'Montserrat-Light',
+    padding: 1 * GlobalSheet.units.vh,
   },
 });
 

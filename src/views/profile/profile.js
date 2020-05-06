@@ -11,8 +11,8 @@ import {
   ImageBackgroundBase,
 } from 'react-native';
 import {compose} from 'redux';
+import NotificationSetting from 'react-native-open-notification';
 import {connect} from 'react-redux';
-import {tokens} from '../../../values';
 import {Avatar} from '../../redux/actions/avatar';
 import HeaderInTabs from '../../components/headerInTabs/headerInTabs';
 import ImagePicker from 'react-native-image-picker';
@@ -22,7 +22,6 @@ import {loggedIn} from '../../redux/actions/login';
 const avatar = require('../../assets/avatar.png');
 const options = {
   title: 'Select Avatar',
-  customButtons: [{name: 'fb', title: 'Choose Photo from Facebook'}],
   storageOptions: {
     skipBackup: true,
     path: 'images',
@@ -171,9 +170,11 @@ class Profile extends Component {
               <Text style={profileStyle.textInsideBtn}>Past Tasks</Text>
             </TouchableOpacity>
             <TouchableOpacity
-              onPress={() => this.props.navigation.navigate('settings')}
+              onPress={() => NotificationSetting.open()}
               style={profileStyle.ButtonStyles}>
-              <Text style={profileStyle.textInsideBtn}>Settings</Text>
+              <Text style={profileStyle.textInsideBtn}>
+                Notification Settings
+              </Text>
             </TouchableOpacity>
           </View>
         </Content>

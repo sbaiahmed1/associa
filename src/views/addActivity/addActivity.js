@@ -149,14 +149,37 @@ function MainHome(props) {
           press={setTaskModal}
           content={taskModalContent}
         />
-        <Text
+        <View
           style={{
             marginLeft: 10 * GlobalSheet.units.vw,
-            fontSize: 2.5 * GlobalSheet.units.vh,
-            fontFamily: 'Montserrat-Bold',
+            marginRight: 10 * GlobalSheet.units.vw,
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            marginTop: 1 * GlobalSheet.units.vh,
+            marginBottom: 1 * GlobalSheet.units.vh,
           }}>
-          Upcoming Tasks
-        </Text>
+          <Text
+            style={{
+              fontSize: 2.5 * GlobalSheet.units.vh,
+              fontFamily: 'Montserrat-Bold',
+            }}>
+            Upcoming Tasks
+          </Text>
+          <TouchableOpacity
+            onPress={() => {
+              props.navigation.navigate('tasks');
+            }}
+            style={{flexDirection: 'row'}}>
+            <Text
+              style={{
+                fontSize: 2.5 * GlobalSheet.units.vh,
+                fontFamily: 'Montserrat-ExtraLight',
+              }}>
+              All Tasks
+            </Text>
+            <Text style={{padding: 0.5 * GlobalSheet.units.vh}}>{arrow}</Text>
+          </TouchableOpacity>
+        </View>
         <FlatList
           data={undoneTasks}
           renderItem={({item}) => (

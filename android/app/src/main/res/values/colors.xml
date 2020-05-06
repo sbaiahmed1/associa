@@ -1,3 +1,5 @@
 <resources>
-<color name="white">#FFF</color>
+    <color name="white">#FFF</color>
+    <color name="splashscreen_bg">#fff</color>
+    <color name="app_bg">#fff</color>
 </resources>

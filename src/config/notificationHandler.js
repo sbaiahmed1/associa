@@ -1,7 +1,6 @@
 import React, {Component, useRef} from 'react';
 import PushNotification from 'react-native-push-notification';
-import {AppState} from 'react-native';
-// var PushNotification = require("react-native-push-notification");
+import '../assets/sound.mp3';
 export default class PushController extends Component {
   constructor(props) {
     super(props);
