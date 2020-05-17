@@ -109,6 +109,7 @@ class MembershipStatus extends Component {
                 position: 'absolute',
                 bottom: 1 * GlobalSheet.units.vh,
                 left: 7 * GlobalSheet.units.vw,
+                marginBottom: 1 * GlobalSheet.units.vh,
               }}>
               <Text
                 style={{

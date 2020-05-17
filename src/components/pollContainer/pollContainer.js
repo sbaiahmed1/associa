@@ -22,16 +22,17 @@ function PollContainer(props) {
         elevation: 5,
         width: 80 * GlobalSheet.units.vw,
         alignSelf: 'center',
-        margin: 1 * GlobalSheet.units.vh,
+        margin: 0.5 * GlobalSheet.units.vh,
         padding: 1 * GlobalSheet.units.vh,
-        alignItems: 'center',
       }}>
       <Text
         style={{
-          fontFamily: 'Montserrat-Regular',
-          alignSelf: 'center',
-          fontSize: 2 * GlobalSheet.units.vh,
+          fontFamily: 'Montserrat-Medium',
+          alignSelf: 'flex-start',
+          fontSize: 2.5 * GlobalSheet.units.vh,
           padding: 1 * GlobalSheet.units.vh,
+          paddingLeft: 3 * GlobalSheet.units.vh,
+          paddingRight: 3 * GlobalSheet.units.vh,
         }}>
         {props.question}
       </Text>
@@ -41,17 +42,16 @@ function PollContainer(props) {
             <View
               style={{
                 flexDirection: 'row',
+                paddingRight: 3 * GlobalSheet.units.vh,
+                paddingLeft: 3 * GlobalSheet.units.vh,
               }}>
-              <Text style={{padding: 1 * GlobalSheet.units.vh}}>
-                {answer.option}
-              </Text>
               <RadioButton
                 value={answer.option}
                 status={checked === answer.option ? 'checked' : 'unchecked'}
                 onPress={() => setchecked(answer.option)}
                 color={Colors.accentColor}
               />
-              <View style={{padding: 1 * GlobalSheet.units.vh, width: '50%'}}>
+              <View style={{padding: 1 * GlobalSheet.units.vh, width: '75%'}}>
                 <ProgressBar
                   style={{
                     height: 1 * GlobalSheet.units.vh,
@@ -61,6 +61,9 @@ function PollContainer(props) {
                   color={Colors.accentColor}
                 />
               </View>
+              <Text style={{padding: 1 * GlobalSheet.units.vh}}>
+                {answer.option}
+              </Text>
             </View>
           );
         })}
@@ -73,6 +76,7 @@ function PollContainer(props) {
             : Colors.buttonColor,
           padding: 1 * GlobalSheet.units.vh,
           borderRadius: 6,
+          width: '85%',
         }}
         disabled={props.disabled}>
         <Text style={{color: Colors.whiteTextColor}}>Submit</Text>

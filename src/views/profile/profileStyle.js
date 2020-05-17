@@ -4,7 +4,7 @@ import {Colors, GlobalSheet} from '../../config';
 const profileStyle = StyleSheet.create({
   thumbnail: {
     alignSelf: 'center',
-    height: 59* GlobalSheet.units.vh,
+    height: 59 * GlobalSheet.units.vh,
     width: '100%',
     // borderRadius: 100,
     resizeMode: 'cover',
@@ -42,6 +42,14 @@ const profileStyle = StyleSheet.create({
     bottom: 2 * GlobalSheet.units.vh,
     alignSelf: 'flex-end',
     padding: 2 * GlobalSheet.units.vh,
+  },
+  linearGradient: {
+    backgroundColor: 'transparent',
+    position: 'absolute',
+    top: 0,
+    bottom: 0,
+    left: 0,
+    right: 0,
   },
 });
 export default profileStyle;

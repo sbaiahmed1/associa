@@ -45,5 +45,7 @@ const styles = StyleSheet.create({
     left: 10 * GlobalSheet.units.vw,
     fontFamily: 'Montserrat-Bold',
     fontSize: 2.5 * GlobalSheet.units.vh,
+    marginBottom: 2 * GlobalSheet.units.vh,
+    marginTop: 2 * GlobalSheet.units.vh,
   },
 });

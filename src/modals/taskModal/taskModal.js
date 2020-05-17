@@ -34,7 +34,7 @@ function TaskModal(props) {
     <Modal
       animationType="slide"
       transparent={true}
-      visible={props.isVisible}
+      isVisible={props.isVisible}
       onRequestClose={() => props.press(false)}
       hideModalContentWhileAnimating={true}
       onBackdropPress={() => {

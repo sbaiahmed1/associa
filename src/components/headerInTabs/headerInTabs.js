@@ -1,5 +1,5 @@
 import React from 'react';
-import {GlobalSheet} from '../../config';
+import {GlobalSheet, Colors} from '../../config';
 import {Image, TouchableOpacity} from 'react-native';
 import {Icon} from 'native-base';
 const logoWithoutText = require('../../assets/noTextLogo.png');
@@ -17,7 +17,9 @@ function HeaderInTabs(props) {
       }}>
       <Icon
         style={
-          props.route.name === 'profile' ? {color: '#ffffff'} : {color: '#000'}
+          props.route.name === 'profile'
+            ? {color: Colors.secondaryTextColor}
+            : {color: '#000'}
         }
         type={'FontAwesome5'}
         name="bars"

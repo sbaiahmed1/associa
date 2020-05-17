@@ -16,8 +16,7 @@ function getDate(date) {
   var day = date.getDate();
   var hours = date.getHours();
   var minutes = '0' + date.getMinutes();
-  var realDate =
-    month + '-' + day + '-' + year + ' ' + hours + ':' + minutes.substr(-2);
+  var realDate = month + '-' + day + '-' + year + ' ';
   return realDate;
 }
 
@@ -39,6 +38,18 @@ function EventContainer(props) {
         <Text style={styles.description} numberOfLines={3}>
           {data.description}
         </Text>
+        <View style={styles.rowItems}>
+          <Text style={styles.location}>
+            {locationIcon}
+            {'\t '}
+            {data.location}
+          </Text>
+          <Text style={styles.date}>
+            {calendarIcon}
+            {'\t '}
+            {getDate(data.date)}
+          </Text>
+        </View>
       </View>
     </TouchableOpacity>
   );

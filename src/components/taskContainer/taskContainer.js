@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
     width: '80%',
     flexDirection: 'row',
     elevation: 5,
-    margin: 2 * GlobalSheet.units.vh,
+    margin: 0.7 * GlobalSheet.units.vh,
     justifyContent: 'space-between',
     padding: 3 * GlobalSheet.units.vh,
   },

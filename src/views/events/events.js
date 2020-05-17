@@ -83,8 +83,8 @@ function Events(props) {
               marginLeft: 10 * GlobalSheet.units.vw,
               fontSize: 2.5 * GlobalSheet.units.vh,
               fontFamily: 'Montserrat-Bold',
+              paddingBottom: 3 * GlobalSheet.units.vh,
               paddingTop: 1 * GlobalSheet.units.vh,
-              paddingBottom: 1 * GlobalSheet.units.vh,
             }}>
             Upcoming Events
           </Text>
@@ -124,8 +124,8 @@ function Events(props) {
               marginLeft: 10 * GlobalSheet.units.vw,
               fontSize: 2.5 * GlobalSheet.units.vh,
               fontFamily: 'Montserrat-Bold',
+              paddingBottom: 3 * GlobalSheet.units.vh,
               paddingTop: 1 * GlobalSheet.units.vh,
-              paddingBottom: 1 * GlobalSheet.units.vh,
             }}>
             Past Events
           </Text>

@@ -136,22 +136,27 @@ class Profile extends Component {
             source={{
               uri: 'data:image/jpeg;base64,' + this.props.isLogged.imageName,
             }}>
-            <HeaderInTabs {...this.props} />
-            <H1 style={profileStyle.Name}>
-              {this.props.isLogged.name}
-              {'\t'}
-              {this.props.isLogged.lastName}
-            </H1>
-            <H3 style={profileStyle.Role}>{this.props.isLogged.role}</H3>
-            <TouchableOpacity
-              onPress={() => this.showImagePicker()}
-              style={profileStyle.camera}>
-              <FontAwesome5
-                size={3 * GlobalSheet.units.vh}
-                name={'camera'}
-                color={Colors.whiteTextColor}
-              />
-            </TouchableOpacity>
+            <LinearGradient
+              colors={['transparent', 'black']}
+              locations={[0.4, 1.2]}
+              style={profileStyle.linearGradient}>
+              <HeaderInTabs {...this.props} />
+              <H1 style={profileStyle.Name}>
+                {this.props.isLogged.name}
+                {'\t'}
+                {this.props.isLogged.lastName}
+              </H1>
+              <H3 style={profileStyle.Role}>{this.props.isLogged.role}</H3>
+              <TouchableOpacity
+                onPress={() => this.showImagePicker()}
+                style={profileStyle.camera}>
+                <FontAwesome5
+                  size={3 * GlobalSheet.units.vh}
+                  name={'camera'}
+                  color={Colors.whiteTextColor}
+                />
+              </TouchableOpacity>
+            </LinearGradient>
           </ImageBackground>
           <View style={profileStyle.buttonsContainer}>
             <TouchableOpacity

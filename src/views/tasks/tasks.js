@@ -105,6 +105,8 @@ function Tasks(props) {
               marginLeft: 10 * GlobalSheet.units.vw,
               fontSize: 2.5 * GlobalSheet.units.vh,
               fontFamily: 'Montserrat-Bold',
+              paddingBottom: 3 * GlobalSheet.units.vh,
+              paddingTop: 1 * GlobalSheet.units.vh,
             }}>
             Upcoming Tasks
           </Text>
@@ -134,6 +136,8 @@ function Tasks(props) {
               marginLeft: 10 * GlobalSheet.units.vw,
               fontSize: 2.5 * GlobalSheet.units.vh,
               fontFamily: 'Montserrat-Bold',
+              paddingBottom: 3 * GlobalSheet.units.vh,
+              paddingTop: 1 * GlobalSheet.units.vh,
             }}>
             Done Tasks
           </Text>

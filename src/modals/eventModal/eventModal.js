@@ -39,7 +39,7 @@ function EventModal(props) {
       deviceHeight={GlobalSheet.height}
       animationType="slide"
       transparent={true}
-      visible={props.isVisible}
+      isVisible={props.isVisible}
       onRequestClose={() => props.press(false)}
       swipeDirection={'down'}
       onSwipeComplete={() => {
@@ -78,7 +78,7 @@ function EventModal(props) {
           // eslint-disable-next-line react-native/no-inline-styles
           style={{
             backgroundColor: Colors.buttonColor,
-            width: '40%',
+            width: '94%',
             borderRadius: 6,
             height: 6 * GlobalSheet.units.vh,
             padding: 1.5 * GlobalSheet.units.vh,
@@ -94,7 +94,7 @@ function EventModal(props) {
           <Text
             style={{
               color: Colors.whiteTextColor,
-              fontFamily: 'Montserrat-Regular',
+              fontFamily: 'Montserrat-Medium',
             }}>
             Close
           </Text>
@@ -119,16 +119,20 @@ const styles = StyleSheet.create({
     shadowRadius: 3.84,
     elevation: 5,
     width: 100 * GlobalSheet.units.vw,
+    bottom: 0,
   },
   textStyle: {
-    textAlign: 'center',
+    textAlign: 'left',
     fontSize: 2 * GlobalSheet.units.vh,
     fontFamily: 'Montserrat-Light',
+    paddingLeft: 3 * GlobalSheet.units.vh,
+    paddingRight: 3 * GlobalSheet.units.vh,
   },
   modalTitle: {
-    textAlign: 'center',
+    textAlign: 'left',
     fontSize: 4 * GlobalSheet.units.vh,
     fontFamily: 'Montserrat-Bold',
+    paddingLeft: 3 * GlobalSheet.units.vh,
   },
   rowItems: {
     flexDirection: 'row',
@@ -136,11 +140,13 @@ const styles = StyleSheet.create({
   },
   location: {
     padding: 1 * GlobalSheet.units.vh,
+    paddingLeft: 3 * GlobalSheet.units.vh,
     fontFamily: 'Montserrat-Light',
     color: Colors.secondaryTextColor,
   },
   date: {
     padding: 1 * GlobalSheet.units.vh,
+    paddingRight: 3 * GlobalSheet.units.vh,
     textAlign: 'right',
     alignSelf: 'flex-end',
     fontFamily: 'Montserrat-Light',
