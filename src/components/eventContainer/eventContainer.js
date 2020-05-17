@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {StyleSheet, TouchableOpacity, Text, View, Image} from 'react-native';
+import {StyleSheet, TouchableOpacity, Text, View, Image,Platform} from 'react-native';
 import MaterialCheckBox from '../materialCheckBox/materialCheckBox';
 import {Colors, GlobalSheet} from '../../config';
 import {fontSize} from '../../config/const';
@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
     height: 20 * GlobalSheet.units.vh,
     backgroundColor: Colors.backgroundFirst,
     borderRadius: 6,
-    shadowOpacity: 1,
+    shadowOpacity: Platform.OS === 'ios' ? 0.3:1,
     alignSelf: 'center',
     width: '80%',
     elevation: 5,

@@ -1,4 +1,4 @@
-import {StyleSheet} from 'react-native';
+import {StyleSheet,Platform} from 'react-native';
 import {Colors, GlobalSheet} from '../../config';
 import colors from '../../config/colors';
 
@@ -9,14 +9,23 @@ let loginStyle = StyleSheet.create({
     height: 15 * GlobalSheet.units.vh,
     width: 43 * GlobalSheet.units.vw,
   },
-  textInputStyle: {
+  LoginInputStyle: {
     borderBottomColor: Colors.textColor,
-    borderBottomWidth: 0.5,
+    borderBottomWidth: Platform.OS === 'ios' ? 0.2 : 0.5,
     width: (GlobalSheet.width / 100) * 85,
     color: colors.textColor,
     alignSelf: 'center',
     textAlign: 'center',
     top: 15 * GlobalSheet.units.vh,
+  },
+  passwordInputStyle: {
+    borderBottomColor: Colors.textColor,
+    borderBottomWidth: Platform.OS === 'ios' ? 0.2 : 0.5,
+    width: (GlobalSheet.width / 100) * 85,
+    color: colors.textColor,
+    alignSelf: 'center',
+    textAlign: 'center',
+    top: 17 * GlobalSheet.units.vh,
   },
   loginMethods: {
     flex: 1,

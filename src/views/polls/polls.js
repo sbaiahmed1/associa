@@ -1,10 +1,9 @@
 import React, {Component} from 'react';
 import {View, Text, Container, Content} from 'native-base';
-import SplashScreen from '../spalshScreen/splashScreen';
 import PollContainer from '../../components/pollContainer/pollContainer';
 import HeaderInTabs from '../../components/headerInTabs/headerInTabs';
 import {StyleSheet} from 'react-native';
-import {GlobalSheet} from '../../config';
+import {GlobalSheet, Colors} from '../../config';
 import PastEvents from '../pastEvents/pastEvents';
 import PastTasks from '../pastTasks/pastTasks';
 const pollQuestion = 'kiki do you love me ?';
@@ -16,7 +15,7 @@ const pollAnswers = [
 ];
 function Polls(props) {
   return (
-    <Container>
+    <Container style={{backgroundColor:Colors.backgroundSecond}}>
       <Content>
         <HeaderInTabs {...props} />
         <Text style={styles.title}>Non-Voted Polls</Text>

@@ -8,6 +8,7 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
   Image,
+  Platform,
 } from 'react-native';
 import loginStyle from './loginStyle';
 import {connect} from 'react-redux';
@@ -126,7 +127,10 @@ class Login extends Component {
 
   keyboardDidShow = () => {
     this.setState({
-      position: -9 * GlobalSheet.units.vh,
+      position:
+        Platform.OS === 'ios'
+          ? GlobalSheet.units.vh
+          : -9 * GlobalSheet.units.vh,
     });
   };
   keyboardDismissed = () => {
@@ -146,7 +150,7 @@ class Login extends Component {
           <View style={{marginTop: this.state.position}}>
             <Image source={logo} style={loginStyle.titleStyle} />
             <TextInput
-              style={loginStyle.textInputStyle}
+              style={loginStyle.LoginInputStyle}
               placeholder="Example@email.com"
               keyboardType={'email-address'}
               onChangeText={text => this.setState({email: text})}
@@ -157,7 +161,7 @@ class Login extends Component {
             <View>
               <TextInput
                 onSubmitEditing={() => this.login}
-                style={loginStyle.textInputStyle}
+                style={loginStyle.passwordInputStyle}
                 placeholder="********"
                 secureTextEntry={this.state.passwordHidden}
                 returnKeyType={'send'}
@@ -172,7 +176,10 @@ class Login extends Component {
                 }
                 style={{
                   alignSelf: 'flex-end',
-                  top: 10.5 * GlobalSheet.units.vh,
+                  top:
+                    Platform.OS === 'ios'
+                      ? 14 * GlobalSheet.units.vh
+                      : 12.5 * GlobalSheet.units.vh,
                   left: -7 * GlobalSheet.units.vw,
                 }}
                 name={this.state.passwordHidden ? 'eye' : 'eye-slash'}

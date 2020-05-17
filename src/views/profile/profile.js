@@ -8,7 +8,6 @@ import {
   TouchableOpacity,
   Text,
   ImageBackground,
-  ImageBackgroundBase,
 } from 'react-native';
 import {compose} from 'redux';
 import NotificationSetting from 'react-native-open-notification';

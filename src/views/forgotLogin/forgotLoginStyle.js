@@ -1,4 +1,4 @@
-import {StyleSheet} from 'react-native';
+import {Platform, StyleSheet} from 'react-native';
 import {Colors, GlobalSheet} from '../../config';
 import colors from '../../config/colors';
 
@@ -18,7 +18,7 @@ let forgotLoginStyle = StyleSheet.create({
   },
   textInputStyle: {
     borderBottomColor: Colors.textColor,
-    borderBottomWidth: 0.5,
+    borderBottomWidth: Platform.OS === 'ios' ? 0.2 : 0.5,
     width: (GlobalSheet.width / 100) * 85,
     color: colors.textColor,
     alignSelf: 'center',

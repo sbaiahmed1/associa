@@ -84,9 +84,11 @@ class MembershipStatus extends Component {
               alignSelf: 'center',
               marginTop: 15 * GlobalSheet.units.vh,
               elevation: 5,
+              shadowOpacity: Platform.OS === 'ios' ? 0.3 : 1,
               borderRadius: 6,
               padding: 4 * GlobalSheet.units.vh,
               height: '40%',
+              backgroundColor:'white'
             }}>
             <Text
               style={{

@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import {View, Toast} from 'native-base';
 import {
   createDrawerNavigator,
-  DrawerContentScrollView,
 } from '@react-navigation/drawer';
 import {HomeTabs} from '../homeTabs';
 import UserInfo from '../../components/userInfo/userInfo';

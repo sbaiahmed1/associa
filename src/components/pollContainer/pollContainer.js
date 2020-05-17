@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, {useState, useEffect} from 'react';
-import {View, Text, TouchableOpacity} from 'react-native';
+import {View, Text, TouchableOpacity, Platform} from 'react-native';
 import {RadioButton, ProgressBar} from 'react-native-paper';
 import {GlobalSheet, Colors} from '../../config';
 
@@ -24,6 +24,8 @@ function PollContainer(props) {
         alignSelf: 'center',
         margin: 0.5 * GlobalSheet.units.vh,
         padding: 1 * GlobalSheet.units.vh,
+        shadowOpacity: Platform.OS === 'ios' ? 0.3 : 1,
+        backgroundColor: 'white',
       }}>
       <Text
         style={{
@@ -84,4 +86,5 @@ function PollContainer(props) {
     </View>
   );
 }
+
 export default PollContainer;

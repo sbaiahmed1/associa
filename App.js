@@ -3,10 +3,8 @@ import RootNavigator from './src/views/rootNavigator/rootNavigator';
 import {Provider} from 'react-redux';
 import {store, persistor} from './src/redux/store/store';
 import {PersistGate} from 'redux-persist/integration/react';
-// import {SkypeIndicator} from 'react-native-indicators';
 import {Provider as PaperProvider} from 'react-native-paper';
 import {Colors} from './src/config';
-import SplashScreen from './src/views/spalshScreen/splashScreen';
 import {SkypeIndicator} from 'react-native-indicators';
 /************************************************************* */
 function Loader(props) {

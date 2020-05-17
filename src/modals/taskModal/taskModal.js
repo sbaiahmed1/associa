@@ -4,7 +4,6 @@ import {
   View,
   Text,
   TouchableOpacity,
-  AsyncStorage,
   ScrollView,
 } from 'react-native';
 import {Container, Content} from 'native-base';
@@ -12,6 +11,7 @@ import {GlobalSheet, Colors} from '../../config';
 import Modal from 'react-native-modal';
 import axios from 'axios';
 import {baseUrl} from '../../config/const';
+import AsyncStorage from '@react-native-community/async-storage';
 /****************************************************************** */
 function TaskModal(props) {
   let token = AsyncStorage.getItem('@token');
